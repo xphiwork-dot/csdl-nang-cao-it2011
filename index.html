@@ -127,11 +127,12 @@ details[open] summary{margin-bottom:.5rem}
 <div class="panel">
 <h2>Lộ trình đã chốt</h2>
 <div class="table-scroll" tabindex="0" role="region" aria-label="Lộ trình và phân bổ thời gian"><table><thead><tr><th>Thời gian ôn</th><th>Chương</th><th>Tự làm được</th></tr></thead><tbody>
-<tr><td><strong>40%</strong></td><td><a href="#nosql">NoSQL</a> và <a href="#doi-tuong">hướng đối tượng / quan hệ–đối tượng</a></td><td>Thiết kế document, truy vấn graph và dùng kiểu đối tượng trong Oracle.</td></tr>
-<tr><td><strong>45%</strong></td><td><a href="#phan-tan">Phân tán</a>, <a href="#di-dong">di động</a> và <a href="#blockchain">Blockchain</a></td><td>Phân tích sao chép, mất mạng, đồng bộ và mô hình tin cậy giữa các bên.</td></tr>
-<tr><td><strong>15%</strong></td><td><a href="#newsql">NewSQL</a> và <a href="#on-tap">ôn tổng hợp</a></td><td>Chọn mô hình cho đề mới, giải thích giả định và đánh đổi.</td></tr>
+<tr><td><strong>35%</strong></td><td><a href="#doi-tuong">Hướng đối tượng / quan hệ–đối tượng</a></td><td>Trình bày khái niệm OODB, chuyển UML sang ODL, so sánh OODBMS–RDBMS và dùng kiểu đối tượng trong Oracle.</td></tr>
+<tr><td><strong>25%</strong></td><td><a href="#nosql">NoSQL</a></td><td>Thiết kế document, viết aggregation MongoDB và truy vấn graph Neo4j.</td></tr>
+<tr><td><strong>25%</strong></td><td><a href="#di-dong">CSDL di động</a></td><td>Nêu định nghĩa, kiến trúc, 7 yêu cầu, các sản phẩm và phân tích đồng bộ khi mất mạng.</td></tr>
+<tr><td><strong>15%</strong></td><td><a href="#phan-tan">Phân tán</a>, <a href="#blockchain">Blockchain</a>, <a href="#newsql">NewSQL</a> và <a href="#on-tap">ôn tổng hợp</a></td><td>Phân tích sao chép, CAP, mô hình tin cậy; chọn mô hình cho đề mới.</td></tr>
 </tbody></table></div>
-<p class="sub">Tỷ lệ dùng để chia thời gian học. Phạm vi chung dựa trên mục 9.15 của UIT. Hai bài Moodle xác nhận các bài thực hành MongoDB, Neo4j và Oracle. NewSQL có trong sách tham khảo của thầy. Phạm vi và cấu trúc thi cuối kỳ của lớp chưa được xác minh.</p>
+<p class="sub">Tỷ lệ dùng để chia thời gian học. Thầy đã đăng hai slide (<em>Bài giảng CSDL số 1 – HĐT</em> và <em>số 5 – Mobile DB</em>) cùng hai bài tập (CSDL quan hệ đối tượng trên Oracle; NoSQL với MongoDB và Neo4j), nên các phần này được ưu tiên. Phân tán, Blockchain, NewSQL lấy từ mục 9.15 của UIT và sách tham khảo, chưa thấy tài liệu riêng của thầy. Phạm vi và cấu trúc thi cuối kỳ của lớp chưa được xác minh.</p>
 <p>Đọc từ trên xuống hoặc chọn chương trong mục lục. Làm câu tự kiểm tra rồi đánh dấu hoàn thành. Tiến độ lưu trong trình duyệt nếu tính năng lưu trữ được hỗ trợ.</p>
 </div>
 <div class="panel">
@@ -153,6 +154,18 @@ details[open] summary{margin-bottom:.5rem}
 <tr><td><strong>Graph</strong></td><td>Node, quan hệ và thuộc tính</td><td>Đi qua các quan hệ nhiều bước hoặc tìm đường.</td><td>Tìm liên hệ giữa tài xế và các tuyến.</td></tr>
 </tbody></table></div>
 <p>NoSQL là một nhóm mô hình. Khả năng giao dịch, ràng buộc, chỉ mục và tính nhất quán tùy thuộc hệ quản trị và cấu hình.</p>
+</div>
+<div class="panel">
+<h2>CAP, ACID và BASE</h2>
+<div class="grid">
+<div class="card"><h3>Định lý CAP</h3><p>Hệ phân tán không thể đồng thời bảo đảm cả Nhất quán (C), Sẵn sàng (A) và Chịu phân mảnh mạng (P). Phân mảnh mạng luôn có thể xảy ra, nên khi nó xảy ra hệ thống phải chọn <strong>CP</strong> (từ chối hoặc chờ để giữ nhất quán) hoặc <strong>AP</strong> (vẫn phục vụ, chấp nhận dữ liệu cũ). Xem thêm ở <a href="#phan-tan">chương phân tán</a>.</p></div>
+<div class="card"><h3>ACID và BASE</h3><p><strong>ACID</strong>: nguyên tử, nhất quán, cô lập, bền vững. Đây là thế mạnh truyền thống của RDBMS. <strong>BASE</strong>: <em>Basically Available</em> (cơ bản luôn sẵn sàng), <em>Soft state</em> (trạng thái có thể thay đổi trong lúc đồng bộ), <em>Eventually consistent</em> (cuối cùng sẽ nhất quán). Nhiều hệ NoSQL theo hướng BASE.</p></div>
+</div>
+<ul>
+<li><strong>Lược đồ linh hoạt:</strong> không cần khai báo lược đồ cố định trước. Các document trong cùng collection có thể khác trường.</li>
+<li><strong>Mở rộng theo chiều ngang:</strong> chia dữ liệu ra nhiều máy (<em>sharding</em>) và giữ nhiều bản sao (<em>replication</em>) để chịu lỗi và tăng khả năng đọc.</li>
+</ul>
+<div class="note"><strong>Kết luận của thầy.</strong> Document tối ưu cho việc lấy <em>một đối tượng cùng toàn bộ thông tin liên quan</em>. Graph tối ưu cho việc <em>khám phá mối quan hệ và đường đi</em> giữa các đối tượng.</div>
 </div>
 <div class="panel">
 <h2>MongoDB · Thiết kế một document đơn hàng</h2>
@@ -202,6 +215,16 @@ db.orders.find({ totalAmount: { $gt: 5000000 } })</code></pre><p>Hai truy vấn 
 <h2>Neo4j · Từ câu hỏi đến mẫu quan hệ</h2>
 <div class="flow" aria-label="Quan hệ giữa người, bài viết và chủ đề"><span>Person</span><b>→ LIKES →</b><span>Post</span><b>→ ABOUT →</b><span>Topic</span></div>
 <p><code>Person</code>, <code>Post</code>, <code>Topic</code> là nhãn node. <code>POSTED</code>, <code>FOLLOWS</code> và <code>LIKES</code> có hướng theo nghiệp vụ. Ví dụ coi tình bạn là hai chiều, lưu một cạnh <code>FRIEND</code> cho mỗi cặp và truy vấn cạnh theo cả hai hướng. <code>$personId</code>, <code>$a</code>, <code>$b</code> là tham số. Giả sử mỗi <code>Person.id</code> là duy nhất.</p>
+<details><summary>Dữ liệu mẫu để chạy thử</summary><pre><code>CREATE (an:Person {id:1, name:'An'}), (binh:Person {id:2, name:'Bình'}),
+       (chi:Person {id:3, name:'Chi'}), (dung:Person {id:4, name:'Dũng'}),
+       (hoa:Person {id:5, name:'Hoa'}),
+       (db:Topic {name:'Database'}), (ai:Topic {name:'AI'}),
+       (p1:Post {id:101, content:'NoSQL intro'}), (p2:Post {id:102, content:'LLM news'})
+CREATE (an)-[:FRIEND]-&gt;(binh), (binh)-[:FRIEND]-&gt;(chi), (chi)-[:FRIEND]-&gt;(hoa),
+       (an)-[:FRIEND]-&gt;(dung), (dung)-[:FRIEND]-&gt;(chi),
+       (an)-[:FOLLOWS]-&gt;(hoa), (binh)-[:POSTED]-&gt;(p1), (chi)-[:POSTED]-&gt;(p2),
+       (p1)-[:ABOUT]-&gt;(db), (p2)-[:ABOUT]-&gt;(ai),
+       (an)-[:LIKES]-&gt;(p1), (an)-[:LIKES]-&gt;(p2);</code></pre><p>Với An (<code>id:1</code>): bạn trực tiếp là Bình và Dũng. Gợi ý bạn của bạn là Chi, có 2 bạn chung. Đường ngắn nhất An → Hoa dài 3 cạnh, ví dụ An–Bình–Chi–Hoa.</p></details>
 <details><summary>Bài Moodle · Bạn trực tiếp và gợi ý bạn của bạn</summary><pre><code>MATCH (p:Person {id: $personId})-[:FRIEND]-(f:Person)
 RETURN DISTINCT f;
 
@@ -225,7 +248,13 @@ ORDER BY likedPosts DESC, t.name ASC;
 MATCH (p:Person)
 OPTIONAL MATCH (p)&lt;-[:FOLLOWS]-(f:Person)
 RETURN p, count(DISTINCT f) AS followers
-ORDER BY followers DESC, p.id ASC;</code></pre><p>Ví dụ định nghĩa ảnh hưởng bằng số người theo dõi đến. Nếu câu hỏi dùng tổng số kết nối, hãy nêu rõ loại cạnh, hướng, và cách đếm người trùng. <code>OPTIONAL MATCH</code> giữ người có 0 lượt theo dõi.</p></details>
+ORDER BY followers DESC, p.id ASC;</code></pre><p>Ví dụ định nghĩa ảnh hưởng bằng số người theo dõi đến. Nếu câu hỏi dùng tổng số kết nối, hãy nêu rõ loại cạnh, hướng, và cách đếm người trùng. <code>OPTIONAL MATCH</code> giữ người có 0 lượt theo dõi.</p><p>Phương án tính theo tổng kết nối, gọi là độ trung tâm bậc (Neo4j 5):</p><pre><code>MATCH (p:Person)
+RETURN p.name,
+       COUNT { (p)-[:FRIEND]-() }   AS friends,
+       COUNT { (p)&lt;-[:FOLLOWS]-() } AS followers,
+       COUNT { (p)-[:FRIEND]-() } + COUNT { (p)&lt;-[:FOLLOWS]-() } AS influence
+ORDER BY influence DESC LIMIT 5;</code></pre><p>Nếu muốn đo ảnh hưởng nâng cao hơn, dùng PageRank hoặc betweenness trong thư viện Graph Data Science (GDS).</p></details>
+<div class="note"><strong>Cú pháp hay dùng.</strong> Đường đi có độ dài thay đổi: <code>-[:FRIEND*]-</code>, <code>-[:FRIEND*1..3]-</code>. Tìm đường: <code>shortestPath</code> trả một đường ngắn nhất, <code>allShortestPaths</code> trả mọi đường ngắn nhất. Phủ định mẫu: <code>NOT EXISTS { MATCH (a)-[:R]-(b) }</code>. Quan hệ đối xứng như FRIEND thì match không chiều, tức là bỏ dấu <code>&gt;</code>.</div>
 <fieldset class="quiz" data-answer="b" data-correct="Đúng. Đơn hàng là đơn vị có tổng tiền và có thời điểm ghi nhận." data-wrong="Hãy xác định dữ liệu đang ở cấp đơn hay cấp dòng hàng. Sau khi tách items, cùng một totalAmount có thể lặp lại.">
 <legend>Tự kiểm tra · Đơn ba dòng hàng có tổng 6 triệu. Cộng doanh thu như thế nào?</legend>
 <label><input type="radio" name="q-doc" value="a"> Tách ba dòng rồi cộng totalAmount.</label>
@@ -240,6 +269,121 @@ ORDER BY followers DESC, p.id ASC;</code></pre><p>Ví dụ định nghĩa ảnh 
 
 <section class="chapter" id="doi-tuong" data-title="Hướng đối tượng · Oracle">
 <div class="hero compact"><span class="kicker">Chương 2 · Mô hình dữ liệu</span><h1>CSDL hướng đối tượng</h1><p>Hiểu định danh, kiểu phức hợp và cách đưa kiểu đối tượng vào bảng quan hệ.</p></div>
+<div class="panel">
+<h2>Vì sao cần vượt ra ngoài mô hình quan hệ?</h2>
+<div class="grid">
+<div class="card"><h3>Ưu điểm của CSDL quan hệ</h3><ul><li>Nền tảng toán học vững (đại số quan hệ), dựa trên các dạng chuẩn</li><li>Nhiều hệ QTCSDL hỗ trợ</li><li>Mô hình và khái niệm đơn giản, dễ hiểu</li><li>Phù hợp với khá nhiều ứng dụng</li><li>SQL dễ hiểu, đáp ứng nhu cầu người dùng</li><li>Có thể phục hồi dữ liệu khi gặp sự cố</li></ul></div>
+<div class="card"><h3>Hạn chế</h3><ul><li>Ngôn ngữ truy vấn thiếu cấu trúc rẽ nhánh, vòng lặp</li><li>Không hỗ trợ kiểu dữ liệu phức tạp: cấu trúc, tập hợp, ảnh, tri thức…</li></ul></div>
+</div>
+<p><strong>Hai hướng giải quyết:</strong></p>
+<ol>
+<li><strong>Mở rộng CSDL quan hệ</strong> (mô hình ERD, hình thành khái niệm TQH và CBH theo slide). Kết quả là <strong>CSDL quan hệ đối tượng (ORDB)</strong>.</li>
+<li><strong>Đề xuất mô hình mới:</strong> bỏ <strong>dạng chuẩn 1</strong> để biểu diễn được đối tượng phức tạp. Kết quả là <strong>CSDL hướng đối tượng (OODB)</strong>.</li>
+</ol>
+<p><strong>Nguồn gốc OODB, hai trường phái:</strong> (1) ngôn ngữ lập trình hướng đối tượng tạo tiền đề để xây dựng CSDL HĐT; (2) CSDL HĐT tạo tiền đề để xây dựng ngôn ngữ lập trình HĐT. <strong>Trường phái 2 có vẻ thắng thế.</strong></p>
+</div>
+<div class="panel">
+<h2>Các khái niệm cốt lõi (cần thuộc định nghĩa)</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Khái niệm OODB"><table><thead><tr><th>Khái niệm</th><th>Ý nghĩa</th></tr></thead><tbody>
+<tr><td><strong>Đối tượng</strong></td><td>Sự kết hợp giữa dữ liệu và hành vi để mô tả một thực thể.</td></tr>
+<tr><td><strong>Tính chất (property)</strong></td><td>Đặc trưng có tên của đối tượng. Có thể là <em>thuộc tính</em> (tên của một người), <em>hàm</em> (<code>tuoi()</code>) hoặc <em>đối tượng con thành phần</em> (các con của một người).</td></tr>
+<tr><td><strong>Lớp</strong></td><td>Nhóm các đối tượng có cùng tính chất, gồm một cấu trúc và tập phép toán tác động lên đối tượng. Lớp <strong>che giấu cấu trúc</strong>.</td></tr>
+<tr><td><strong>Phương thức</strong></td><td>Thao tác gắn với lớp, xử lý hoặc trả về trạng thái đối tượng. Đối tượng chỉ được thao tác qua phương thức, đó là <strong>nguyên lý bao gói (encapsulation)</strong>. Một phương thức có thể áp dụng cho đối tượng của nhiều lớp (đa lớp), dùng để mô hình hóa liên kết giữa các lớp.</td></tr>
+<tr><td><strong>Khái quát hóa</strong></td><td>Liên kết phân cấp: lớp trên tổng quát hơn, lớp dưới có tính chất đầy đủ và tinh tế hơn.</td></tr>
+<tr><td><strong>Kế thừa</strong></td><td>Lớp con nhận mọi tính chất của lớp cha và có thể <strong>định nghĩa lại (override)</strong> một số tính chất.</td></tr>
+<tr><td><strong>Kế thừa bội</strong></td><td>Một lớp có nhiều lớp cha trực tiếp. Có thể xảy ra xung đột tên tính chất hoặc phương thức, cần giải quyết.</td></tr>
+<tr><td><strong>Định danh đối tượng (OID)</strong></td><td>Do hệ thống cấp, không đổi trong suốt vòng đời và độc lập với giá trị thuộc tính.</td></tr>
+</tbody></table></div>
+<div class="grid">
+<div class="card"><h3>ISA</h3><p>Kiểu con thừa kế từ <strong>Interface</strong>, nên <strong>chỉ thừa kế hành vi</strong>.</p></div>
+<div class="card"><h3>EXTENDS</h3><p>Kiểu con thừa kế từ <strong>Class</strong>, nên thừa kế <strong>cả hành vi lẫn thuộc tính</strong>.</p></div>
+</div>
+<p><strong>Ký hiệu UML:</strong> mỗi lớp là một hộp gồm Tên lớp / Thuộc tính / Phương thức. Đối tượng vẽ dạng <code>p:Person</code> kèm giá trị cụ thể. Khái quát hóa dùng mũi tên tam giác rỗng (ví dụ <code>Student → Person</code>), có thể kèm ràng buộc <code>{disjoint, complete}</code>. Kết tập/hợp thành dùng hình thoi (ví dụ <code>HamDoi ◆—3..10 TauChien</code>). Phụ thuộc dùng mũi tên nét đứt.</p>
+<h3>Các kiểu dữ liệu mới</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Kiểu dữ liệu tập hợp"><table><thead><tr><th>Kiểu</th><th>Có thứ tự?</th><th>Cho trùng lặp?</th></tr></thead><tbody>
+<tr><td><strong>Bộ (Tuple)</strong></td><td colspan="2">Gộp các thuộc tính (tích Đề-các)</td></tr>
+<tr><td><strong>Tập (Set)</strong></td><td>Không</td><td><strong>Không</strong></td></tr>
+<tr><td><strong>Túi (Bag)</strong></td><td>Không</td><td><strong>Có</strong></td></tr>
+<tr><td><strong>Danh sách (List)</strong></td><td><strong>Có</strong></td><td>Có</td></tr>
+<tr><td><strong>Bảng (Table)</strong></td><td>Có thứ tự và <strong>có chỉ số</strong></td><td>–</td></tr>
+</tbody></table></div>
+<fieldset class="quiz" data-answer="b" data-correct="Đúng. Bag không có thứ tự nhưng cho phép phần tử trùng." data-wrong="Set không cho trùng. List có thứ tự. Cần kiểu không thứ tự nhưng cho trùng.">
+<legend>Tự kiểm tra · Lưu các lần quét thẻ (không quan tâm thứ tự, một thẻ có thể quét nhiều lần) nên dùng kiểu nào?</legend>
+<label><input type="radio" name="q-coll" value="a"> Set</label>
+<label><input type="radio" name="q-coll" value="b"> Bag</label>
+<label><input type="radio" name="q-coll" value="c"> Tuple</label>
+<p class="feedback" role="status" hidden></p>
+</fieldset>
+</div>
+<div class="panel">
+<h2>Chuẩn ODMG và chuyển UML sang ODL</h2>
+<p><strong>ODMG</strong> (Object Data Management Group, 1991) ra đời để tạo một chuẩn chung khi trước đó chưa có, giúp chuyển đổi giữa các sản phẩm và chuẩn hóa mô hình, truy vấn, lập trình. Gồm <strong>ODL</strong> (Object Definition Language, tương tự DDL trong SQL) và <strong>OQL</strong> (Object Query Language, cú pháp gần SQL).</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Quy tắc chuyển UML sang ODL"><table><thead><tr><th>Trên sơ đồ UML</th><th>Trong ODL</th></tr></thead><tbody>
+<tr><td>Lớp, thuộc tính, phương thức</td><td><code>class</code>, <code>attribute</code>, khai báo hàm</td></tr>
+<tr><td>Thuộc tính phức hợp</td><td><code>attribute struct ...</code></td></tr>
+<tr><td>Liên kết 1 —— *</td><td><code>relationship</code> + <code>inverse</code>: phía “1” giữ <code>Set&lt;…&gt;</code>, phía “nhiều” giữ một tham chiếu đơn</td></tr>
+<tr><td>Hợp thành ◆ 1..*</td><td>Thuộc tính kiểu tập hợp, ví dụ <code>List&lt;DongBanHang&gt;</code></td></tr>
+<tr><td>Khái quát hóa</td><td><code>extends</code> + <code>(extent …)</code>. Extent là tập mọi thể hiện được lưu của lớp, tương tự một bảng</td></tr>
+</tbody></table></div>
+<details><summary>Ví dụ ODL · Bán hàng (dạng rất có thể ra thi)</summary><pre><code>class CuaHang {
+  attribute string(30) tenGoi;
+  attribute struct DiaChi { char(3) soPho; char(20) tenPho; char(15) tinhThanh; } diaChi;
+  void addSale();
+};
+
+class HBH {
+  attribute string(25) hangTruong;
+  relationship Set&lt;PhienBanHang&gt; banHang inverse PhienBanHang::ghiNhan;  // phía "1"
+  void enterItems(); void endSale();
+};
+
+class PhienBanHang {
+  attribute Date ngayBan;
+  attribute Time gioBan;
+  attribute List&lt;DongBanHang&gt; gomCo;                                     // hợp thành
+  relationship HBH ghiNhan inverse HBH::banHang;                         // phía "nhiều"
+  boolean becomeComplete(); void makeLineItem(); void makePayment(); Number total();
+};
+
+class DongBanHang { attribute integer soLuong; Number subtotal(); };
+
+class ThanhToan     (extent ThanhToan)    { attribute Number soTien; };
+class ThanhToanTM   extends ThanhToan (extent ThanhToanTM)   { ... };
+class ThanhToanThe  extends ThanhToan (extent ThanhToanThe)  { ... };</code></pre>
+<p>⚠️ ODL trong slide đặt <code>Set&lt;&gt;</code> nhầm phía. Quy tắc đúng: phía “1” giữ tập hợp, phía “nhiều” giữ một tham chiếu. Mỗi <code>inverse</code> trỏ tới relationship của lớp bên kia.</p></details>
+<details><summary>Ví dụ OQL</summary><pre><code>SELECT p.ngayBan, p.total()
+FROM   PhienBanHang p
+WHERE  p.ghiNhan.hangTruong = "Quầy 1";</code></pre><p>OQL đi theo đường dẫn tham chiếu (<code>p.ghiNhan.hangTruong</code>) thay cho JOIN, và gọi được phương thức trong truy vấn.</p></details>
+</div>
+<div class="panel">
+<h2>Các hướng thiết kế và ma trận Stonebraker</h2>
+<pre><code>Sơ đồ ER  ──ánh xạ thành quan hệ──────────► Thiết kế quan hệ ──chuẩn hóa──► Bảng SQL      ► RDBMS
+Sơ đồ lớp UML ──quan hệ + kiểu đối tượng──► Thiết kế quan hệ–đối tượng ──► Extended-SQL ► ORDBMS
+Sơ đồ lớp UML ──ánh xạ trực tiếp ra lớp ODL► Lược đồ HĐT bằng ODL ──tối ưu──────────────► OODBMS</code></pre>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Ma trận Stonebraker"><table><thead><tr><th></th><th>Không truy vấn</th><th>Có truy vấn</th></tr></thead><tbody>
+<tr><th>Dữ liệu phức tạp</th><td>OODBMS</td><td><strong>ORDBMS</strong></td></tr>
+<tr><th>Dữ liệu đơn giản</th><td>Hệ thống tập tin</td><td>RDBMS</td></tr>
+</tbody></table></div>
+</div>
+<div class="panel">
+<h2>So sánh OODBMS và RDBMS</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="So sánh OODBMS và RDBMS"><table><thead><tr><th>OODBMS</th><th>RDBMS</th></tr></thead><tbody>
+<tr><td>Mục tiêu: <strong>bao gói</strong> và độc lập</td><td>Mục tiêu: <strong>độc lập dữ liệu</strong> với chương trình</td></tr>
+<tr><td>Tổ chức lại lớp mà không ảnh hưởng cách dùng</td><td>Tổ chức lại dữ liệu mà không ảnh hưởng cách dùng</td></tr>
+<tr><td>Lưu <strong>dữ liệu và phương thức</strong></td><td><strong>Chỉ lưu dữ liệu</strong></td></tr>
+<tr><td>Bao gói: dữ liệu chỉ được dùng qua phương thức của lớp</td><td>Phân hoạch dữ liệu theo nhu cầu người dùng</td></tr>
+<tr><td><strong>Đối tượng chủ động</strong>: yêu cầu khiến đối tượng thực thi phương thức</td><td><strong>Dữ liệu thụ động</strong></td></tr>
+<tr><td>Cấu trúc phức tạp, nhiều kiểu (BLOB: âm thanh, ảnh, video)</td><td>Cấu trúc đơn giản: dòng, cột, bảng</td></tr>
+<tr><td>Dữ liệu được móc nối (chained), tăng hiệu năng</td><td>Các bảng tách rời, nối bằng JOIN</td></tr>
+<tr><td>Không dư thừa nhờ <strong>bao gói và kế thừa</strong></td><td>Không dư thừa nhờ <strong>chuẩn hóa</strong> ở giai đoạn thiết kế</td></tr>
+<tr><td>Dữ liệu liên quan của một đối tượng được lưu cùng nhau</td><td>Hiệu năng phụ thuộc độ phức tạp cấu trúc</td></tr>
+<tr><td><strong>Cùng một mô hình</strong> cho phân tích, thiết kế, lập trình và truy xuất</td><td><strong>Mô hình khác nhau</strong>, phải chuyển sang bảng và SQL (impedance mismatch)</td></tr>
+</tbody></table></div>
+<div class="grid">
+<div class="card"><h3>Sản phẩm</h3><p>OODBMS thương mại: ObjectStore, GemStone, Objectivity, O2, Jasmine, Versant, POET. Khoảng 20 hệ trong phòng thí nghiệm. Ngoài ra có các HQTCSDL lai (ORDBMS) như Oracle, PostgreSQL, IBM DB2.</p></div>
+<div class="card"><h3>Ứng dụng phù hợp OODB</h3><p>Thiết kế công nghệ (<strong>CAD, CAM, CIM, CASE</strong>), <strong>đa phương tiện</strong> (đồ họa, audio, video), <strong>cơ sở tri thức</strong> (luật hệ chuyên gia khó giữ phi mâu thuẫn trong CSDL quan hệ), xử lý phân tán và tương tranh, phần mềm nhúng.</p></div>
+</div>
+</div>
 <div class="panel">
 <h2>Ba cách biểu diễn cùng một phương tiện</h2>
 <div class="table-scroll" tabindex="0" role="region" aria-label="So sánh ba cách lưu phương tiện"><table><thead><tr><th>Mô hình</th><th>Cách biểu diễn</th><th>Điểm cần chú ý</th></tr></thead><tbody>
@@ -322,6 +466,44 @@ ORDER BY id;</code></pre><p>View tổng hợp trả một dòng mỗi xe. Xe 3 c
 <p class="feedback" role="status" hidden></p>
 </fieldset>
 </div>
+<div class="panel">
+<h2>Oracle · Kiến thức mở rộng giám khảo hay hỏi</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="VARRAY và nested table"><table><thead><tr><th></th><th><code>VARRAY(n) OF t</code></th><th><code>TABLE OF t</code> (nested table)</th></tr></thead><tbody>
+<tr><td>Kích thước</td><td>Giới hạn tối đa n phần tử</td><td>Không giới hạn</td></tr>
+<tr><td>Thứ tự</td><td>Giữ thứ tự</td><td>Không bảo đảm thứ tự khi lưu</td></tr>
+<tr><td>Lưu trữ</td><td>Cùng dòng (inline)</td><td>Bảng riêng, cần <code>NESTED TABLE … STORE AS …</code></td></tr>
+<tr><td>Khi dùng</td><td>Danh sách nhỏ, cố định (vd 3 số điện thoại)</td><td>Danh sách tăng dần, cần truy vấn phần tử (vd lịch sử bảo trì)</td></tr>
+</tbody></table></div>
+<ul>
+<li><strong>Bí danh bảng là bắt buộc</strong> khi truy cập bằng dấu chấm: <code>v.location.x</code> chạy được, <code>vehicle.location.x</code> báo lỗi.</li>
+<li><strong><code>TABLE(v.maintenances)</code></strong> trải phẳng collection thành các dòng. Nếu muốn giữ xe không có bảo trì khi nối, dùng <code>TABLE(v.maintenances)(+)</code> hoặc truy vấn con có <code>COALESCE</code> như ở trên.</li>
+<li><strong>Bảng đối tượng</strong>: <code>CREATE TABLE owners OF owner_t;</code>. Mỗi dòng là một đối tượng có OID.</li>
+<li><strong><code>REF</code> / <code>DEREF</code></strong>: <code>REF</code> là con trỏ tới đối tượng dòng trong bảng đối tượng; <code>DEREF</code> lấy lại đối tượng từ con trỏ.</li>
+<li><strong>Kế thừa kiểu</strong>: kiểu cha khai báo <code>NOT FINAL</code>, kiểu con dùng <code>UNDER</code>.</li>
+<li><strong>Vì sao Location là object type</strong> thay vì 2 cột: gom dữ liệu liên quan, tái sử dụng được, gắn được phương thức như <code>distance()</code>.</li>
+</ul>
+<details><summary>Ví dụ REF, kế thừa và phương thức (phần cộng điểm)</summary><pre><code>CREATE TYPE person_t AS OBJECT (name VARCHAR2(100)) NOT FINAL;
+/
+CREATE TYPE driver_t UNDER person_t (license VARCHAR2(20));
+/
+CREATE TABLE people OF person_t;
+CREATE TABLE trip (id NUMBER PRIMARY KEY, driver REF person_t SCOPE IS people);
+
+SELECT t.id, t.driver.name, DEREF(t.driver) FROM trip t;
+
+-- Phương thức trên kiểu tọa độ
+CREATE OR REPLACE TYPE location_t AS OBJECT (
+  x NUMBER, y NUMBER,
+  MEMBER FUNCTION distance(p location_t) RETURN NUMBER
+);
+/
+CREATE OR REPLACE TYPE BODY location_t AS
+  MEMBER FUNCTION distance(p location_t) RETURN NUMBER IS
+  BEGIN RETURN SQRT(POWER(x - p.x, 2) + POWER(y - p.y, 2)); END;
+END;
+/
+SELECT v.id, v.location.distance(location_t(0,0)) AS d FROM vehicle v;</code></pre><p>Nếu <code>location_t</code> đã được bảng <code>vehicle</code> dùng thì không <code>CREATE OR REPLACE</code> được. Khi đó dùng <code>ALTER TYPE … ADD MEMBER FUNCTION … CASCADE</code>, hoặc khai báo phương thức ngay từ đầu.</p></details>
+</div>
 </section>
 
 <section class="chapter" id="phan-tan" data-title="CSDL phân tán">
@@ -365,6 +547,97 @@ ORDER BY id;</code></pre><p>View tổng hợp trả một dòng mỗi xe. Xe 3 c
 
 <section class="chapter" id="di-dong" data-title="CSDL di động">
 <div class="hero compact"><span class="kicker">Chương 4 · Dữ liệu khi mất mạng</span><h1>CSDL di động</h1><p>Giữ ứng dụng hữu ích khi thiết bị mất mạng và đưa cập nhật về máy chủ an toàn khi kết nối trở lại.</p></div>
+<div class="panel">
+<h2>Tại sao cần CSDL di động? Định nghĩa</h2>
+<p>Hơn 1 tỷ điện thoại thông minh vào năm 2012 và con số vẫn tăng nhanh. Doanh nghiệp chuyển sang mô hình nhân viên di động. Thiết bị rẻ và mạnh mở đường cho các ứng dụng hướng dữ liệu, cần truy cập <strong>bất cứ nơi nào, bất cứ lúc nào</strong>. Ví dụ: nhân viên bán hàng cập nhật hồ sơ khi di chuyển, phóng viên, bác sĩ xem bệnh án, điều khiển giao thông, cứu hỏa và cấp cứu, chia sẻ thông tin trong cộng đồng.</p>
+<p><strong>CSDL di động</strong> là CSDL có thể kết nối với thiết bị tính toán di động qua mạng di động không dây. Nó có 4 đặc điểm:</p>
+<ol>
+<li><strong>Tách biệt về vật lý</strong> với máy chủ CSDL trung tâm</li>
+<li><strong>Cư trú trên thiết bị di động</strong></li>
+<li>Có thể <strong>giao tiếp từ xa với máy chủ trung tâm hoặc các máy di động khác</strong></li>
+<li><strong>Xử lý truy vấn cục bộ khi không có kết nối</strong></li>
+</ol>
+<h3>Hai mô hình kiến trúc</h3>
+<div class="grid">
+<div class="card"><h3>Client–Server</h3><p>Mô hình truyền thống và phổ biến nhất. Máy chủ trung tâm giữ CSDL trung tâm, phục vụ các Mobile DBMS trên laptop và điện thoại.</p><p>❌ Máy chủ là điểm duy nhất nên có thể gây <strong>nút cổ chai</strong>.</p></div>
+<div class="card"><h3>Peer-to-Peer</h3><p>Các hoạt động CSDL được phân bố cho các máy khách. <strong>Mỗi nút vừa là server vừa là client</strong>. Yêu cầu được chuyển tiếp giữa các máy tới khi tìm thấy dữ liệu.</p><p>❌ Khó nhất là bảo đảm <strong>dữ liệu luôn sẵn có</strong>.</p></div>
+</div>
+</div>
+<div class="panel">
+<h2>Môi trường di động và các yêu cầu của DBMS di động</h2>
+<div class="grid">
+<div class="card"><h3>Đặc điểm môi trường</h3><ul><li>Băng thông hạn chế (không dây)</li><li>Nguồn điện hạn chế (pin)</li><li>Tài nguyên hạn chế (CPU, bộ nhớ)</li><li>Tính di động (mobility)</li><li>Thường xuyên mất kết nối</li></ul></div>
+<div class="card"><h3>Mục tiêu và ràng buộc</h3><p><strong>Mục tiêu:</strong> bất cứ nơi nào (di chuyển không ảnh hưởng dữ liệu), bất cứ lúc nào (lưu và truy xuất khi có kết nối), hiệu quả (đưa đúng thứ người dùng cần).</p><p><strong>Ràng buộc:</strong> màn hình nhỏ, nhập liệu và truy vấn hạn chế, khả năng tính toán và lưu trữ hạn chế, <strong>an ninh yếu</strong>.</p></div>
+</div>
+<p><strong>Cách tiếp cận bằng tập tin phẳng</strong> (nhiều nhà phát triển đang dùng): các bản ghi không có quan hệ cấu trúc với nhau. ✅ Nhỏ, dễ quản lý. ❌ Ứng dụng phải tự biết cách tổ chức bản ghi, và lập trình viên phải tự làm các chức năng của CSDL.</p>
+<h3>7 yêu cầu của DBMS di động (rất có thể ra thi)</h3>
+<ol>
+<li><strong>Bộ nhớ nhỏ</strong> (small footprint)</li>
+<li><strong>Tối ưu hệ thống lưu trữ</strong>: kích thước nhỏ, chống sốc tốt, tiêu thụ ít điện, truy cập nhanh (flash)</li>
+<li><strong>Đồng bộ dữ liệu</strong>: thiết bị không luôn kết nối và không chứa hết dữ liệu, nên DBMS phải tích hợp các phiên bản khác nhau thành một phiên bản nhất quán</li>
+<li><strong>An ninh</strong>: dữ liệu đi qua mạng không dây, cần an toàn <em>end-to-end</em></li>
+<li><strong>Tiêu thụ điện năng thấp</strong>: tuổi thọ pin dự kiến chỉ tăng khoảng 20% trong 10 năm. CPU, màn hình và kết nối mạng tốn điện nhất</li>
+<li><strong>Tự quản lý</strong>: điện thoại không có DBA, nên các tác vụ quản trị phải tự động (một số hệ cho phép quản lý từ xa)</li>
+<li><strong>Nhúng được trong ứng dụng</strong>: DBMS được cung cấp như một phần của ứng dụng (ví dụ dạng DLL)</li>
+</ol>
+<p><strong>Các khả năng cần có:</strong> giao tiếp với máy chủ trung tâm (không dây hoặc Internet); <strong>sao chép</strong> và <strong>đồng bộ</strong> dữ liệu giữa máy chủ và thiết bị; thu thập dữ liệu từ nhiều nguồn như Internet; quản lý và phân tích dữ liệu trên thiết bị; tạo ứng dụng di động tùy chỉnh.</p>
+<fieldset class="quiz" data-answer="a" data-correct="Đúng. Thiết bị không có DBA nên sao lưu, tối ưu, phục hồi phải tự động." data-wrong="Hãy nghĩ tới việc không có người quản trị CSDL ngồi bên cạnh mỗi điện thoại.">
+<legend>Tự kiểm tra · Yêu cầu “tự quản lý” xuất phát từ đâu?</legend>
+<label><input type="radio" name="q-mreq" value="a"> Không có DBA trên thiết bị, các tác vụ quản trị phải tự động.</label>
+<label><input type="radio" name="q-mreq" value="b"> Băng thông hạn chế.</label>
+<label><input type="radio" name="q-mreq" value="c"> Màn hình nhỏ.</label>
+<p class="feedback" role="status" hidden></p>
+</fieldset>
+</div>
+<div class="panel">
+<h2>Các sản phẩm DBMS di động</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Sản phẩm DBMS di động"><table><thead><tr><th>Sản phẩm</th><th>Điểm chính</th></tr></thead><tbody>
+<tr><td><strong>Sybase SQL Anywhere</strong></td><td>Ra đời 1995. <strong>Chiếm khoảng 68% thị trường</strong>. File CSDL độc lập hệ điều hành. Hỗ trợ mã hóa mạnh.</td></tr>
+<tr><td><strong>Oracle Lite</strong></td><td>Từ Omniscience (Oracle mua năm 1996). <strong>Dưới 1 MB RAM, 3 MB đĩa</strong>. CSDL quan hệ một người dùng.</td></tr>
+<tr><td><strong>MS SQL Server Compact</strong></td><td>Trước đây là SQL Server Mobile Edition. Miễn phí. Khoảng 2 MB bộ nhớ, 5 MB lưu trữ.</td></tr>
+<tr><td><strong>SQLite</strong></td><td>Mã nguồn mở, gần như không cần cấu hình, không cần server. Hỗ trợ hầu hết SQL-92.</td></tr>
+<tr><td><strong>IBM DB2e</strong></td><td>Thị phần lớn thứ 2. <strong>Bộ nhớ nhỏ nhất (350 KB)</strong> trong các sản phẩm thương mại. Ngừng tháng 4/2013, thay bằng IBM solidDB.</td></tr>
+</tbody></table></div>
+<p><strong>CSDL nhúng</strong> (cho thẻ thông minh, cảm biến): tích hợp chặt với ứng dụng, ẩn với người dùng cuối, cần ít tài nguyên hơn CSDL di động, chức năng SQL hạn chế.</p>
+<ul>
+<li><strong>PicoDBMS</strong> (thẻ thông minh): <strong>30 KB</strong>. Có INSERT/UPDATE/DELETE/SELECT, CREATE/DROP TABLE/VIEW, GRANT/REVOKE.</li>
+<li><strong>TinyDB</strong> (cảm biến, ĐH Berkeley): <strong>3 KB</strong>. <strong>Chỉ có SELECT</strong>.</li>
+</ul>
+<div class="table-scroll" tabindex="0" role="region" aria-label="So sánh các DBMS di động và nhúng"><table><thead><tr><th></th><th>TinyDB</th><th>PicoDBMS</th><th>Oracle Lite</th><th>DB2e</th><th>SQL Compact</th></tr></thead><tbody>
+<tr><td>Bộ nhớ tối thiểu</td><td>3 KB</td><td>30 KB</td><td>970 KB</td><td>320 KB</td><td>2 MB</td></tr>
+<tr><td>SQL</td><td>chỉ SELECT</td><td>một phần SQL99</td><td>một phần SQL99</td><td>một phần SQL99</td><td>một phần SQL99</td></tr>
+<tr><td>View / Đồng thời / Chỉ mục</td><td>N / N / N</td><td>Y / N / Y</td><td>Y / Y / Y</td><td>Y / Y / Y</td><td>Y / Y / Y</td></tr>
+<tr><td>Đồng bộ dữ liệu</td><td>N</td><td>N</td><td>Y</td><td>Y</td><td>Y</td></tr>
+<tr><td>Tiết kiệm điện</td><td>Y</td><td>Y</td><td>N</td><td>Y</td><td>Y</td></tr>
+<tr><td>An ninh</td><td>N</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td></tr>
+<tr><td>Lưu trữ tối ưu cho flash</td><td>N</td><td>N</td><td>N</td><td>N</td><td>N</td></tr>
+</tbody></table></div>
+<p class="sub">Số liệu theo slide của thầy. Slide ghi DB2e 350 KB ở phần mô tả và 320 KB ở bảng so sánh.</p>
+</div>
+<div class="panel">
+<h2>Các vấn đề CSDL di động phải xử lý</h2>
+<ul>
+<li><strong>Xử lý truy vấn.</strong> Hai loại truy vấn: <em>phụ thuộc vị trí</em> (ví dụ “nhà hàng gần tôi”) và <em>không phụ thuộc vị trí</em>. Tiêu chí đánh giá: thời gian phản hồi, độ chính xác của kết quả, <em>throughput</em> (số truy vấn trên một đơn vị thời gian).</li>
+<li><strong>Điều khiển đồng thời</strong> khi nhiều người dùng cùng cập nhật.</li>
+<li><strong>Quản lý giao tác và khôi phục</strong> khi kết nối chập chờn.</li>
+<li><strong>Bảo mật</strong> và tương tác với các ứng dụng khác.</li>
+<li>Dịch vụ tìm kiếm tích hợp trên thiết bị: Google Mobile/SMS/Maps, Yahoo! Mobile/Go, AOL, MSN, 4INFO.</li>
+</ul>
+<p><strong>Thách thức tương lai:</strong> tạo chỉ mục và lưu trữ, xử lý truy vấn hiệu quả, thích nghi với giao diện hiển thị hạn chế, tổng hợp dữ liệu theo từng cá nhân, giải thuật mở rộng khi CSDL lớn, chia sẻ tri thức giữa các thiết bị, <strong>kết quả tìm kiếm theo vị trí địa lý</strong>.</p>
+</div>
+<div class="panel">
+<h2>CSDL di động hiện đại (phụ lục 2024 trong slide)</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="CSDL di động hiện đại"><table><thead><tr><th>CSDL</th><th>Dùng khi</th><th>Thị phần (ước tính)</th></tr></thead><tbody>
+<tr><td><strong>SQLite</strong></td><td>Ứng dụng đơn giản, lưu cục bộ, không cần server hay cấu hình</td><td>40–50%</td></tr>
+<tr><td><strong>Realm</strong></td><td>Ứng dụng phức tạp, đồng bộ thời gian thực, mô hình giống đối tượng (NoSQL)</td><td>15–20%</td></tr>
+<tr><td><strong>MongoDB</strong></td><td>Cần mở rộng cao, dữ liệu JSON phi cấu trúc</td><td>10–15%</td></tr>
+<tr><td><strong>AWS Amplify</strong></td><td>Nền tảng trọn gói trên AWS, NoSQL được quản lý</td><td>5–10%</td></tr>
+<tr><td><strong>Firebase Realtime DB</strong></td><td>NoSQL đám mây, đồng bộ thời gian thực và truy cập ngoại tuyến</td><td>5–10%</td></tr>
+</tbody></table></div>
+<p><strong>Tiêu chí chọn:</strong> loại dữ liệu, khả năng mở rộng, hiệu suất, có cần đồng bộ thời gian thực không, dễ sử dụng, nền tảng, ngân sách.</p>
+<p><strong>Ứng dụng mạng xã hội:</strong> Viber dùng SQLite (cục bộ) và AWS S3 (đám mây). Telegram dùng TDLib và VK Cloud. Messenger dùng Cassandra và Facebook Object Storage.</p>
+<details><summary>Bài tập trong slide · Tìm hiểu CSDL di động của Viber và Instagram</summary><p><strong>Viber:</strong> SQLite trên thiết bị lưu tin nhắn và danh bạ cục bộ; AWS S3 lưu media và bản sao lưu trên đám mây.</p><p><strong>Instagram</strong> (bổ sung, không có trong slide): SQLite trên thiết bị làm bộ đệm cục bộ. Phía server dùng PostgreSQL cho dữ liệu người dùng và quan hệ, Cassandra cho feed và hoạt động, cùng bộ đệm Memcached/Redis.</p></details>
+</div>
 <div class="panel">
 <h2>Luồng offline-first</h2>
 <p>Điện thoại của tài xế có thể mất sóng tại bãi hàng. Ứng dụng vẫn phải mở được danh sách chuyến đã tải và cho phép ghi nhận thao tác phù hợp với nghiệp vụ. Điều kiện quan trọng là người dùng biết thao tác đã lưu cục bộ hay đã được máy chủ xác nhận.</p>
@@ -476,9 +749,27 @@ ORDER BY id;</code></pre><p>View tổng hợp trả một dòng mỗi xe. Xe 3 c
 </ul>
 </details>
 </div>
+<div class="panel" id="checklist">
+<h2>Checklist ôn nhanh trước giờ thi</h2>
+<ul style="list-style:none;padding-left:0">
+<li><label><input type="checkbox"> Ưu điểm và hạn chế của CSDL quan hệ; 2 hướng giải quyết (mở rộng → ORDB, bỏ dạng chuẩn 1 → OODB); 2 trường phái nguồn gốc</label></li>
+<li><label><input type="checkbox"> Định nghĩa: đối tượng, tính chất, lớp, phương thức, bao gói, khái quát hóa, kế thừa, kế thừa bội, ISA và EXTENDS</label></li>
+<li><label><input type="checkbox"> Khác nhau giữa Tuple / Set / Bag / List / Table</label></li>
+<li><label><input type="checkbox"> ODMG, ODL, OQL; <strong>chuyển UML sang ODL</strong> (struct, relationship + inverse, List&lt;&gt; cho hợp thành, extends + extent)</label></li>
+<li><label><input type="checkbox"> Bảng so sánh OODBMS–RDBMS, ma trận Stonebraker, lĩnh vực ứng dụng OODB</label></li>
+<li><label><input type="checkbox"> Oracle: CREATE TYPE, nested table và VARRAY, bí danh khi dùng dấu chấm, TABLE(), REF/DEREF, UNDER</label></li>
+<li><label><input type="checkbox"> CSDL di động: định nghĩa, 4 đặc điểm, client–server và P2P, đặc điểm môi trường, <strong>7 yêu cầu</strong></label></li>
+<li><label><input type="checkbox"> Sản phẩm di động (kèm kích thước bộ nhớ), CSDL nhúng PicoDBMS 30 KB, TinyDB 3 KB</label></li>
+<li><label><input type="checkbox"> Vấn đề của MDB: truy vấn phụ thuộc và không phụ thuộc vị trí, đồng thời, giao tác và khôi phục</label></li>
+<li><label><input type="checkbox"> NoSQL: 4 họ, CAP, ACID và BASE, sharding và replication</label></li>
+<li><label><input type="checkbox"> MongoDB: nhúng và tham chiếu, aggregation ($unwind, $group, $addToSet, $all)</label></li>
+<li><label><input type="checkbox"> Neo4j: bạn của bạn, shortestPath, bạn chung, gợi ý topic, độ ảnh hưởng</label></li>
+</ul>
+</div>
 <div class="panel" id="tai-lieu">
 <h2>Tài liệu tham khảo</h2>
 <ul>
+<li>Tài liệu của thầy trên courses.uit.edu.vn: slide <em>Bài giảng CSDL số 1 – HĐT</em>, slide <em>Bài giảng CSDL số 5 – Mobile DB (cập nhật)</em>, bài tập CSDL quan hệ đối tượng (Oracle), bài tập CSDL NoSQL (MongoDB, Neo4j).</li>
 <li><a href="https://sdh.uit.edu.vn/sites/default/files/uploads/files/202504/qd_1010_qd_dhcntt_28_11_2022_ctdt_nganh_cntt_2022.pdf">UIT · Chương trình thạc sĩ CNTT</a>, mục 9.15, trang in 22.</li>
 <li><a href="https://vnuhcmpress.edu.vn/tai-lieu-tham-khao-co-so-du-lieu-nang-cao-b40107.html">NXB ĐHQG-HCM · Cơ sở dữ liệu nâng cao</a>, sách tham khảo về NoSQL, NewSQL và Blockchain. Bài thực hành được tổng hợp từ hai bài Moodle bạn cung cấp.</li>
 <li><a href="https://www.mongodb.com/docs/manual/data-modeling/best-practices/">MongoDB · Thiết kế dữ liệu</a> và <a href="https://www.mongodb.com/docs/manual/reference/operator/aggregation/datetrunc/">gom nhóm theo mốc thời gian</a>.</li>
