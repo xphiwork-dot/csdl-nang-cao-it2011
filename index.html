@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Cơ sở dữ liệu nâng cao · IT2011</title>
+<style>
+:root{--ink:#152722;--sub:#4d6159;--dark:#142c26;--paper:#f4f5ef;--white:#fff;--line:#dce5db;--accent:#1e6857;--mint:#dcf2e8;--gold:#f9d77a;--shadow:0 10px 28px #142c260a;--rail:278px}
+*{box-sizing:border-box}
+html{scroll-padding-top:1.2rem}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 "Segoe UI",system-ui,sans-serif}
+a{color:var(--accent);text-underline-offset:3px} button,select{font:inherit}
+button{cursor:pointer} button,a,input,summary,select{touch-action:manipulation}
+:focus-visible{outline:3px solid #b57500;outline-offset:4px}
+[hidden]{display:none!important}
+.skip{position:fixed;left:1rem;top:-5rem;z-index:5;background:white;padding:.6rem 1rem}
+.skip:focus{top:1rem}
+.shell{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);min-height:100vh}
+aside.rail{background:var(--dark);color:#e6f0eb;position:sticky;top:0;height:100dvh;overflow:auto;padding:2rem 1.15rem}
+.brand{display:flex;gap:.75rem;align-items:center;padding:.1rem .55rem 1.45rem;color:#fff;line-height:1.3}
+.brand strong{display:block;font-size:1.04rem}.brand small{color:#a8c9bd}
+.mark{border:1px solid #558575;border-radius:12px;padding:.35rem .6rem;font-weight:800;color:#b5efd8;font-size:.84rem}
+.rail-label{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;margin:.7rem .6rem;color:#b4cfc5;font-weight:700}
+.rail nav{display:grid;gap:.2rem}
+.rail nav a{display:grid;grid-template-columns:1.8rem 1fr auto;gap:.4rem;align-items:center;color:#e3eee8;text-decoration:none;font-size:.92rem;padding:.55rem .62rem;border-radius:9px;font-weight:600}
+.rail nav a:hover{background:#244339}.rail nav a[aria-current="page"]{background:#d7f0e5;color:#123a2f}
+.num{font:700 .78rem ui-monospace,monospace;opacity:.78}.tick{font-size:.8rem}
+.progress-box{border-top:1px solid #49625a;margin:1.35rem .5rem .75rem;padding-top:1rem;color:#dcebe4;font-size:.86rem}
+progress{width:100%;height:.56rem;border:0;border-radius:2rem;overflow:hidden;display:block;margin:.45rem 0 .25rem;accent-color:#8cdbbb;background:#425d53}
+progress::-webkit-progress-bar{background:#425d53}progress::-webkit-progress-value{background:#8cdbbb}progress::-moz-progress-bar{background:#8cdbbb}
+.rail .reference{color:#d2e5dc;margin:.5rem;text-decoration:underline}
+main{width:min(100%,1110px);padding:clamp(1rem,4.25vw,3.9rem);margin:0 auto;min-width:0}
+.mobile-jump{display:none}.chapter{min-width:0}
+.hero{padding:clamp(1.3rem,4vw,3rem);border-radius:22px;background:#1c4d40;color:#fff;position:relative;overflow:hidden;margin-bottom:1.55rem}
+.hero:after{content:"";position:absolute;right:-3.5rem;top:-7rem;width:20rem;height:20rem;border:1px solid #a0e8c540;border-radius:50%;box-shadow:0 0 0 2.6rem #a0e8c514,0 0 0 5rem #a0e8c50c;pointer-events:none}
+.hero>*{position:relative;z-index:1}
+.kicker{display:block;font-size:.76rem;font-weight:800;letter-spacing:.115em;text-transform:uppercase;color:#c5ebd8;margin-bottom:.65rem}
+h1,h2,h3,h4{line-height:1.2;margin:0 0 .65em;letter-spacing:-.022em}
+h1{font-size:clamp(2rem,5.4vw,4.15rem);max-width:16ch}
+h2{font-size:clamp(1.35rem,2.9vw,2rem)} h3{font-size:1.17rem} h4{font-size:1.03rem}
+.hero p{max-width:63ch;color:#e1efe8;margin:.35rem 0 0}
+.hero.compact h1{font-size:clamp(1.8rem,4.3vw,3.1rem);max-width:28ch}
+p{margin:.55rem 0 .9rem} ul,ol{padding-left:1.45rem;margin:.4rem 0 1rem}li+li{margin-top:.25rem}
+.panel{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:clamp(1rem,3vw,1.65rem);margin-bottom:1.05rem;box-shadow:var(--shadow)}
+.sub{color:var(--sub)}.tag{display:inline-block;background:var(--gold);color:#3b2c0b;font-size:.78rem;font-weight:750;border-radius:6px;padding:.08rem .45rem;vertical-align:middle}
+.note{border-left:4px solid #2c876b;background:#e8f5ee;border-radius:0 9px 9px 0;padding:.7rem .95rem;margin:.9rem 0;color:#244b3e}
+.note p:last-child,.panel>:last-child,details>:last-child{margin-bottom:0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.82rem;margin:.85rem 0}
+.card{border:1px solid var(--line);padding:.9rem 1rem;border-radius:11px;background:#f8fbf8;min-width:0}
+.card p:last-child{margin-bottom:0}
+.flow{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin:.8rem 0 1rem}
+.flow span{padding:.38rem .65rem;background:var(--mint);border-radius:8px;font-size:.9rem;font-weight:700}
+.flow b{font-size:1.08rem;color:#507769}
+.table-scroll{overflow:auto;border:1px solid var(--line);border-radius:10px;margin:.8rem 0}
+table{width:100%;border-collapse:collapse;font-size:.94rem;min-width:450px;text-align:left}
+th,td{padding:.58rem .72rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#e8f3ec}tr:last-child td{border-bottom:0}
+code{font: .89em Consolas,"Courier New",monospace;background:#edf4ee;color:#254b3f;padding:.1em .24em;border-radius:4px;overflow-wrap:anywhere}
+pre{margin:.7rem 0 1rem;padding:.9rem 1rem;overflow:auto;border-radius:10px;background:#172e28;color:#e0f4e8;line-height:1.55;tab-size:2;font-size:.9em}
+pre code{background:none;color:inherit;padding:0;overflow-wrap:normal;font-size:1em}
+details{border:1px solid var(--line);border-radius:10px;margin:.65rem 0;padding:.65rem .85rem;background:#fbfdfb}
+summary{cursor:pointer;font-weight:700;color:#205749}
+details[open] summary{margin-bottom:.5rem}
+.quiz{margin:1.15rem 0 .5rem;border:0;padding:0}
+.quiz legend{font-weight:750;margin-bottom:.35rem}
+.quiz label{display:block;padding:.35rem .55rem;margin:.24rem 0;border-radius:.45rem;border:1px solid var(--line);cursor:pointer}
+.quiz label:has(:checked){background:#e1f2e9;border-color:#6a9f8b}
+.quiz input{margin-right:.45rem;accent-color:#236b56}
+.feedback{padding:.45rem .66rem;margin:.55rem 0 0;border-radius:6px;background:#fff3d6;color:#583c00}
+.feedback.good{background:#def2e6;color:#15523b}
+.controls{border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:.6rem;flex-wrap:wrap;padding-top:1.05rem;margin:1.2rem 0 .7rem}
+.controls div{display:flex;gap:.5rem;flex-wrap:wrap}
+.btn{display:inline-block;background:#fff;border:1px solid #99b2a6;color:#204e40;font-weight:700;padding:.45rem .78rem;border-radius:8px;text-decoration:none;line-height:1.45;font-size:.9rem}
+.btn:hover{background:#edf7f0}.btn.primary{background:#21634f;border-color:#21634f;color:#fff}.btn.primary:hover{background:#184938}
+.demo{background:#f1f7f1;border:1px solid var(--line);border-radius:11px;padding:.85rem;margin:.8rem 0}
+.demo label{display:block;font-weight:650;margin-bottom:.22rem}
+.demo select{max-width:100%;border:1px solid #87a99c;background:white;border-radius:7px;padding:.36rem;color:#204e40}
+.demo output{display:block;margin-top:.75rem;min-height:3rem}.demo .grid{margin:0}
+.foot{font-size:.86rem;color:var(--sub);margin-top:1.15rem}
+@media(max-width:790px){.shell{display:block}aside.rail{display:none}.mobile-jump{display:block;margin-bottom:1rem}.mobile-jump label{display:block;font-weight:750}.mobile-jump select{width:100%;background:white;border:1px solid #92aa9f;border-radius:8px;padding:.48rem}.mobile-jump small{color:var(--sub)}}
+@media(max-width:530px){.grid{grid-template-columns:1fr}.hero{border-radius:15px}.panel{border-radius:12px}}
+@media print{.shell{display:block}aside.rail,.mobile-jump,.controls,.skip,.quiz input,.demo select{display:none!important}main{max-width:none;padding:0}.chapter[hidden]{display:block!important}.chapter+.chapter{break-before:page}.hero,.panel{box-shadow:none;background:white;color:black}.hero p,.kicker{color:#222}.hero:after{display:none}pre{white-space:pre-wrap;color:black;background:#f5f5f5}.panel{padding:.7rem}h1{font-size:2rem}h2,h3,summary{break-after:avoid}table{min-width:0}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Bỏ qua mục lục</a>
+<div class="shell">
+<aside class="rail" aria-label="Điều hướng bài học">
+  <div class="brand"><span class="mark">IT2011</span><div><strong>CSDL nâng cao</strong><small>Cao học UIT</small></div></div>
+  <p class="rail-label">Mục lục</p>
+  <nav id="navigation" aria-label="Chương"></nav>
+  <div class="progress-box">
+    <strong>Tiến độ học</strong>
+    <progress id="progress" value="0" max="8" aria-label="Tiến độ học"></progress>
+    <span id="progress-label">0/8 chương hoàn thành</span>
+  </div>
+  <a class="reference" href="#tai-lieu">Tài liệu tham khảo</a>
+</aside>
+<main id="main" tabindex="-1">
+  <div class="mobile-jump">
+    <label for="chapter-select">Chọn chương · IT2011</label>
+    <select id="chapter-select"></select>
+    <small id="mobile-progress"></small>
+  </div>
+
+
+<section class="chapter" id="tong-quan" data-title="Bản đồ môn học">
+<div class="hero">
+  <span class="kicker">Học theo chương · IT2011</span>
+  <h1>Cơ sở dữ liệu nâng cao</h1>
+  <p>Từ mô hình dữ liệu đến kiến trúc phân tán. Mỗi chương giải thích cơ chế, đưa một tình huống thực tế rồi cho bạn tự kiểm tra.</p>
+</div>
+<div class="panel">
+<h2>Bắt đầu từ câu hỏi hệ thống cần trả lời</h2>
+<p>Hãy dùng một hệ thống vận tải làm ví dụ xuyên suốt. Công ty cần quản lý phương tiện và bảo trì, nhận đơn tại nhiều chi nhánh, hỗ trợ tài xế mất mạng, và chia sẻ lịch sử bàn giao với đối tác. Mỗi yêu cầu đặt ra một quyết định thiết kế khác nhau.</p>
+<div class="flow" aria-label="Trình tự phân tích bài toán"><span>Yêu cầu đọc và ghi</span><b aria-hidden="true">→</b><span>Mô hình dữ liệu</span><b aria-hidden="true">→</b><span>Cách triển khai</span><b aria-hidden="true">→</b><span>Đánh đổi</span></div>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Các góc nhìn thiết kế"><table>
+<thead><tr><th>Câu hỏi thiết kế</th><th>Kiến thức liên quan</th><th>Ví dụ vận tải</th></tr></thead>
+<tbody>
+<tr><td>Dữ liệu có hình dạng gì? Truy vấn đi theo thuộc tính hay quan hệ?</td><td>NoSQL, hướng đối tượng, quan hệ–đối tượng</td><td>Đọc cả đơn một lượt, khám phá mạng tuyến đường, hoặc lưu tọa độ như một kiểu dữ liệu.</td></tr>
+<tr><td>Dữ liệu nằm ở đâu? Chuyện gì xảy ra khi một nút hoặc đường truyền gặp sự cố?</td><td>CSDL phân tán, NewSQL</td><td>Các chi nhánh cần đọc đơn nhanh và cập nhật số chỗ nhất quán.</td></tr>
+<tr><td>Ai có thể ghi? Thiết bị có luôn kết nối? Các bên tin cậy nhau đến đâu?</td><td>CSDL di động, Blockchain</td><td>Tài xế ghi nhận offline. Nhiều đối tác có thể cần cùng xác minh lịch sử bàn giao.</td></tr>
+</tbody></table></div>
+<p><strong>Các trục này có thể kết hợp.</strong> Ví dụ, document là mô hình dữ liệu, còn phân tán là cách đặt và quản lý dữ liệu trên nhiều nút. Một cơ sở dữ liệu document có thể chạy trên một máy hoặc trên nhiều máy.</p>
+</div>
+<div class="panel">
+<h2>Lộ trình đã chốt</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Lộ trình và phân bổ thời gian"><table><thead><tr><th>Thời gian ôn</th><th>Chương</th><th>Tự làm được</th></tr></thead><tbody>
+<tr><td><strong>40%</strong></td><td><a href="#nosql">NoSQL</a> và <a href="#doi-tuong">hướng đối tượng / quan hệ–đối tượng</a></td><td>Thiết kế document, truy vấn graph và dùng kiểu đối tượng trong Oracle.</td></tr>
+<tr><td><strong>45%</strong></td><td><a href="#phan-tan">Phân tán</a>, <a href="#di-dong">di động</a> và <a href="#blockchain">Blockchain</a></td><td>Phân tích sao chép, mất mạng, đồng bộ và mô hình tin cậy giữa các bên.</td></tr>
+<tr><td><strong>15%</strong></td><td><a href="#newsql">NewSQL</a> và <a href="#on-tap">ôn tổng hợp</a></td><td>Chọn mô hình cho đề mới, giải thích giả định và đánh đổi.</td></tr>
+</tbody></table></div>
+<p class="sub">Tỷ lệ dùng để chia thời gian học. Phạm vi chung dựa trên mục 9.15 của UIT. Hai bài Moodle xác nhận các bài thực hành MongoDB, Neo4j và Oracle. NewSQL có trong sách tham khảo của thầy. Phạm vi và cấu trúc thi cuối kỳ của lớp chưa được xác minh.</p>
+<p>Đọc từ trên xuống hoặc chọn chương trong mục lục. Làm câu tự kiểm tra rồi đánh dấu hoàn thành. Tiến độ lưu trong trình duyệt nếu tính năng lưu trữ được hỗ trợ.</p>
+</div>
+<div class="panel">
+<h2>Ôn nền tảng trong 5 phút</h2>
+<ul><li><strong>Khóa và tham chiếu:</strong> khóa nhận diện một bản ghi. Tham chiếu nối bản ghi này với bản ghi khác.</li><li><strong>JOIN và GROUP BY:</strong> JOIN kết hợp dữ liệu giữa các nguồn. GROUP BY đổi đơn vị kết quả, chẳng hạn từ từng lần bảo trì thành từng xe.</li><li><strong>Giao dịch và ACID:</strong> một giao dịch có thể gồm nhiều thao tác cần thành công cùng nhau. Bốn thuộc tính là nguyên tử, nhất quán theo ràng buộc, cô lập và bền vững. Tính nhất quán ACID và tính nhất quán của bản sao trong CAP là hai khái niệm khác nhau.</li><li><strong>Workload:</strong> tập các thao tác, tần suất, kích cỡ dữ liệu và yêu cầu về độ trễ. Viết ra hai truy vấn chính trước khi thiết kế dữ liệu.</li></ul>
+<div class="note"><strong>Mẹo khi làm truy vấn.</strong> Ghi rõ mỗi dòng kết quả đại diện cho gì. Đơn hàng, dòng sản phẩm và khách hàng là ba cấp khác nhau.</div>
+<details><summary>Tự kiểm tra · Một mô hình hay một kiến trúc?</summary><p>Một kho dữ liệu lưu đơn dưới dạng JSON rồi sao chép các đơn sang ba máy. Mô hình và cách triển khai là gì?</p><p><strong>Gợi ý đáp án:</strong> Mô hình document. Sao chép trên nhiều máy là quyết định triển khai phân tán.</p></details>
+</div>
+</section>
+
+<section class="chapter" id="nosql" data-title="NoSQL · Document và Graph">
+<div class="hero compact"><span class="kicker">Chương 1 · Mô hình dữ liệu</span><h1>NoSQL</h1><p>Chọn cách biểu diễn dữ liệu dựa trên cách ứng dụng đọc, ghi và đi qua các quan hệ.</p></div>
+<div class="panel">
+<h2>Bốn họ dữ liệu phổ biến</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="So sánh bốn họ NoSQL"><table><thead><tr><th>Họ</th><th>Đơn vị dữ liệu</th><th>Khi phù hợp</th><th>Ví dụ</th></tr></thead><tbody>
+<tr><td><strong>Key–value</strong></td><td>Khóa → giá trị</td><td>Tra cứu trực tiếp khi đã biết khóa.</td><td>Phiên đăng nhập theo session ID.</td></tr>
+<tr><td><strong>Document</strong></td><td>Document có trường, object lồng và mảng</td><td>Đọc một cụm dữ liệu cùng nhau, vẫn lọc theo trường được.</td><td>Đơn hàng và các dòng sản phẩm.</td></tr>
+<tr><td><strong>Wide-column</strong></td><td>Dòng phân vùng theo khóa, tổ chức theo cột; cách thiết kế phụ thuộc hệ quản trị</td><td>Truy vấn có mẫu truy cập ổn định theo khóa phân vùng.</td><td>Sự kiện xe theo mã xe và khoảng thời gian.</td></tr>
+<tr><td><strong>Graph</strong></td><td>Node, quan hệ và thuộc tính</td><td>Đi qua các quan hệ nhiều bước hoặc tìm đường.</td><td>Tìm liên hệ giữa tài xế và các tuyến.</td></tr>
+</tbody></table></div>
+<p>NoSQL là một nhóm mô hình. Khả năng giao dịch, ràng buộc, chỉ mục và tính nhất quán tùy thuộc hệ quản trị và cấu hình.</p>
+</div>
+<div class="panel">
+<h2>MongoDB · Thiết kế một document đơn hàng</h2>
+<div class="grid">
+<div class="card"><h3>Nhúng (embed)</h3><p>Đọc cùng nhau, vòng đời gắn với đơn, số lượng phần tử có giới hạn thực tế. Nhúng địa chỉ giao hàng và dòng sản phẩm để giữ ảnh chụp lúc đặt.</p></div>
+<div class="card"><h3>Tham chiếu (reference)</h3><p>Dữ liệu dùng chung, cập nhật độc lập hoặc có thể tăng lớn. Lưu ID khách hoặc sản phẩm để tra hồ sơ hiện hành khi cần.</p></div>
+</div>
+<pre><code>// Một document cho đơn hàng. Giá tiền tính bằng VND.
+{
+  _id: "O101",
+  customerId: "C01",
+  orderedAt: ISODate("2026-09-30T18:00:00Z"),
+  shippingAddress: { street: "07 Nguyễn Bỉnh Khiêm", city: "TP.HCM" },
+  items: [
+    { productId: "A", name: "Thiết bị A", qty: 2, unitPrice: 2500000 },
+    { productId: "B", name: "Thiết bị B", qty: 1, unitPrice: 800000 }
+  ],
+  totalAmount: 5800000
+}</code></pre>
+<p><strong>Giả định ví dụ:</strong> các đơn đều được tính vào doanh thu, <code>qty</code> là số lượng dương và <code>totalAmount</code> là số tiền cấp đơn. Trong hệ thống thật cần quy tắc cho đơn hủy, chiết khấu và hoàn tiền.</p>
+<details><summary>Bài Moodle · Lọc đơn của khách và đơn trên 5 triệu</summary><pre><code>db.orders.find({ customerId: "C01" })
+db.orders.find({ totalAmount: { $gt: 5000000 } })</code></pre><p>Hai truy vấn lọc độc lập. Điều kiện <code>$gt</code> loại đơn đúng 5 triệu. Có thể cân nhắc chỉ mục theo tần suất truy vấn.</p></details>
+<details><summary>Bài Moodle · Sản phẩm bán nhiều nhất</summary><pre><code>db.orders.aggregate([
+  { $unwind: "$items" },
+  { $group: { _id: "$items.productId", units: { $sum: "$items.qty" } } },
+  { $sort: { units: -1, _id: 1 } },
+  { $limit: 1 }
+])</code></pre><p>Mỗi document ở bước <code>$unwind</code> là một dòng hàng. Cộng <code>qty</code> để đo số lượng bán. Ví dụ trả một sản phẩm, dùng mã sản phẩm để xử lý đồng hạng có quy tắc.</p></details>
+<details><summary>Bài Moodle · Doanh thu theo từng tháng</summary><pre><code>db.orders.aggregate([
+  { $group: {
+      _id: { $dateTrunc: {
+        date: "$orderedAt", unit: "month", timezone: "Asia/Ho_Chi_Minh"
+      } },
+      revenue: { $sum: "$totalAmount" }
+  } },
+  { $sort: { _id: 1 } }
+])</code></pre><p>Cộng ở cấp đơn. Ví dụ trên rơi vào tháng 10 theo giờ Việt Nam. <code>$dateTrunc</code> có từ MongoDB 5.0. Giá trị nhóm là một ngày bắt đầu tháng, lưu dưới dạng thời điểm.</p></details>
+<details><summary>Bài Moodle · Khách đã mua cả A và B</summary><pre><code>db.orders.aggregate([
+  { $unwind: "$items" },
+  { $match: { "items.productId": { $in: ["A", "B"] } } },
+  { $group: { _id: "$customerId", products: { $addToSet: "$items.productId" } } },
+  { $match: { products: { $all: ["A", "B"] } } }
+])</code></pre><p>Gom theo khách để xét mọi đơn của người đó. Kiểm thử với một khách mua A ở đơn thứ nhất, B ở đơn thứ hai; khách chỉ mua A nhiều lần phải bị loại.</p></details>
+<details><summary>Bài chuyển dạng · Lịch sử giá và giá hiện hành</summary><p>Nếu giá sản phẩm đổi sau khi thanh toán, tổng tiền cũ vẫn dùng <code>unitPrice</code> đã chụp trong dòng hàng. Mã <code>productId</code> có thể dùng để tra giá hiện hành khi mở trang sản phẩm.</p></details>
+</div>
+<div class="panel">
+<h2>Neo4j · Từ câu hỏi đến mẫu quan hệ</h2>
+<div class="flow" aria-label="Quan hệ giữa người, bài viết và chủ đề"><span>Person</span><b>→ LIKES →</b><span>Post</span><b>→ ABOUT →</b><span>Topic</span></div>
+<p><code>Person</code>, <code>Post</code>, <code>Topic</code> là nhãn node. <code>POSTED</code>, <code>FOLLOWS</code> và <code>LIKES</code> có hướng theo nghiệp vụ. Ví dụ coi tình bạn là hai chiều, lưu một cạnh <code>FRIEND</code> cho mỗi cặp và truy vấn cạnh theo cả hai hướng. <code>$personId</code>, <code>$a</code>, <code>$b</code> là tham số. Giả sử mỗi <code>Person.id</code> là duy nhất.</p>
+<details><summary>Bài Moodle · Bạn trực tiếp và gợi ý bạn của bạn</summary><pre><code>MATCH (p:Person {id: $personId})-[:FRIEND]-(f:Person)
+RETURN DISTINCT f;
+
+// Ứng viên đi qua đúng hai cạnh FRIEND
+MATCH (p:Person {id: $personId})-[:FRIEND]-(:Person)-[:FRIEND]-(c:Person)
+WHERE c &lt;&gt; p AND NOT EXISTS { MATCH (p)-[:FRIEND]-(c) }
+RETURN DISTINCT c;</code></pre><p>Một ứng viên có thể xuất hiện qua nhiều đường. Khử trùng sau khi đã loại người đang xét và bạn trực tiếp.</p></details>
+<details><summary>Bài Moodle · Đường ngắn nhất và nhiều bạn chung nhất</summary><pre><code>MATCH (a:Person {id: $a}), (b:Person {id: $b})
+WHERE a &lt;&gt; b
+MATCH path = shortestPath((a)-[:FRIEND*1..]-(b))
+RETURN path, length(path) AS hops;
+
+MATCH (p:Person {id: $personId})-[:FRIEND]-(m:Person)-[:FRIEND]-(c:Person)
+WHERE c &lt;&gt; p
+RETURN c, count(DISTINCT m) AS mutual
+ORDER BY mutual DESC, c.id ASC;</code></pre><p>Đường đi đo theo số cạnh <code>FRIEND</code> và ví dụ trả một đường ngắn nhất nếu tồn tại. Câu đếm bạn chung trả bảng xếp hạng; thêm điều kiện loại bạn trực tiếp nếu dùng cho gợi ý kết bạn.</p></details>
+<details><summary>Bài Moodle · Chủ đề quan tâm và người có ảnh hưởng</summary><pre><code>MATCH (p:Person {id: $personId})-[:LIKES]-&gt;(post:Post)-[:ABOUT]-&gt;(t:Topic)
+RETURN t, count(DISTINCT post) AS likedPosts
+ORDER BY likedPosts DESC, t.name ASC;
+
+MATCH (p:Person)
+OPTIONAL MATCH (p)&lt;-[:FOLLOWS]-(f:Person)
+RETURN p, count(DISTINCT f) AS followers
+ORDER BY followers DESC, p.id ASC;</code></pre><p>Ví dụ định nghĩa ảnh hưởng bằng số người theo dõi đến. Nếu câu hỏi dùng tổng số kết nối, hãy nêu rõ loại cạnh, hướng, và cách đếm người trùng. <code>OPTIONAL MATCH</code> giữ người có 0 lượt theo dõi.</p></details>
+<fieldset class="quiz" data-answer="b" data-correct="Đúng. Đơn hàng là đơn vị có tổng tiền và có thời điểm ghi nhận." data-wrong="Hãy xác định dữ liệu đang ở cấp đơn hay cấp dòng hàng. Sau khi tách items, cùng một totalAmount có thể lặp lại.">
+<legend>Tự kiểm tra · Đơn ba dòng hàng có tổng 6 triệu. Cộng doanh thu như thế nào?</legend>
+<label><input type="radio" name="q-doc" value="a"> Tách ba dòng rồi cộng totalAmount.</label>
+<label><input type="radio" name="q-doc" value="b"> Gom theo tháng ở cấp đơn rồi cộng totalAmount một lần mỗi đơn.</label>
+<label><input type="radio" name="q-doc" value="c"> Đếm số dòng hàng.</label>
+<p class="feedback" role="status" hidden></p>
+</fieldset>
+</div>
+</section>
+
+
+
+<section class="chapter" id="doi-tuong" data-title="Hướng đối tượng · Oracle">
+<div class="hero compact"><span class="kicker">Chương 2 · Mô hình dữ liệu</span><h1>CSDL hướng đối tượng</h1><p>Hiểu định danh, kiểu phức hợp và cách đưa kiểu đối tượng vào bảng quan hệ.</p></div>
+<div class="panel">
+<h2>Ba cách biểu diễn cùng một phương tiện</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="So sánh ba cách lưu phương tiện"><table><thead><tr><th>Mô hình</th><th>Cách biểu diễn</th><th>Điểm cần chú ý</th></tr></thead><tbody>
+<tr><td>Quan hệ</td><td>Bảng xe có cột x, y và khóa ngoại tới chủ xe. Các lần bảo trì nằm ở bảng khác.</td><td>Dùng khóa và JOIN, thuận tiện khi truy vấn bảo trì trên toàn đội xe.</td></tr>
+<tr><td>Hướng đối tượng</td><td>Đối tượng có định danh, lớp, thuộc tính và có thể có hành vi, tham chiếu hoặc kế thừa.</td><td>Hai đối tượng có thể cùng giá trị thuộc tính nhưng có định danh khác nhau.</td></tr>
+<tr><td>Quan hệ–đối tượng</td><td>Bảng và SQL vẫn được dùng. Một cột có thể là kiểu <code>Location(x, y)</code> hay một collection.</td><td>Oracle trong bài của thầy thuộc cách tiếp cận này. <code>Location</code> được lưu như một giá trị trong cột.</td></tr>
+</tbody></table></div>
+<p><strong>Thành phần cần nhớ:</strong> <em>định danh</em> trả lời “đây là đối tượng nào?”, <em>kiểu</em> mô tả cấu trúc và phương thức có thể có, <em>tham chiếu</em> nối tới đối tượng khác, <em>kế thừa</em> cho phép mô tả kiểu chuyên biệt. Ví dụ, xe tải có các thuộc tính chung của phương tiện và thêm tải trọng. Bài Oracle bên dưới tập trung vào kiểu, giá trị lồng và collection.</p>
+</div>
+<div class="panel">
+<h2>Oracle · Từ kiểu đơn đến danh sách bảo trì</h2>
+<div class="flow" aria-label="Cấu trúc dữ liệu Oracle"><span>Location, Owner, Maintenance</span><b aria-hidden="true">→</b><span>Kiểu danh sách Maintenance</span><b aria-hidden="true">→</b><span>Bảng Vehicle</span></div>
+<p>Dùng tên <code>location_t</code>, <code>owner_t</code> và <code>maintenance_t</code> để phân biệt kiểu với giá trị. Tách <code>maintained_on</code> khỏi từ khóa kiểu dữ liệu <code>DATE</code>.</p>
+<details><summary>Bài Moodle · Tạo kiểu và bảng</summary><pre><code>CREATE TYPE location_t AS OBJECT (x NUMBER, y NUMBER);
+/
+CREATE TYPE owner_t AS OBJECT (name VARCHAR2(100), phone VARCHAR2(30));
+/
+CREATE TYPE maintenance_t AS OBJECT (
+  maintained_on DATE, description VARCHAR2(200), cost NUMBER(12,2)
+);
+/
+CREATE TYPE maintenance_list_t AS TABLE OF maintenance_t;
+/
+CREATE TABLE vehicle (
+  id NUMBER PRIMARY KEY,
+  name VARCHAR2(100) NOT NULL,
+  location location_t,
+  owner owner_t,
+  maintenances maintenance_list_t
+) NESTED TABLE maintenances STORE AS vehicle_maint_store;</code></pre><p>Dấu <code>/</code> dùng khi chạy script trong SQL*Plus, SQLcl hoặc chế độ script tương thích. Cột <code>maintenances</code> chứa nhiều object; Oracle dùng bảng lưu trữ được chỉ định cho nested table.</p></details>
+<details><summary>Bài Moodle · Thêm 5 phương tiện</summary><pre><code>INSERT INTO vehicle VALUES (
+  1, 'Xe A', location_t(130,220), owner_t('An','0900000001'),
+  maintenance_list_t(
+    maintenance_t(DATE '2026-08-05','Thay dầu',400000),
+    maintenance_t(DATE '2026-09-03','Sửa phanh',800000)
+  )
+);
+INSERT INTO vehicle VALUES (
+  2, 'Xe B', location_t(80,250), owner_t('Bình','0900000002'),
+  maintenance_list_t(maintenance_t(DATE '2026-10-01','Thay lốp',1200000))
+);
+INSERT INTO vehicle VALUES (
+  3, 'Xe C', location_t(160,205), owner_t('Chi','0900000003'),
+  maintenance_list_t()
+);
+INSERT INTO vehicle VALUES (
+  4, 'Xe D', location_t(100,250), owner_t('An','0900000001'),
+  maintenance_list_t(maintenance_t(DATE '2026-11-01','Kiểm tra',250000))
+);
+INSERT INTO vehicle VALUES (
+  5, 'Xe E', location_t(155,200), owner_t('Duy','0900000004'),
+  maintenance_list_t(maintenance_t(DATE '2026-11-09','Thay đèn',150000))
+);
+COMMIT;</code></pre></details>
+<details><summary>Bài Moodle · Lọc theo tọa độ và chủ xe</summary><pre><code>SELECT v.id, v.name, v.location.x AS x, v.location.y AS y
+FROM vehicle v
+WHERE v.location.x &gt; 100 AND v.location.y &gt; 200;
+
+SELECT v.id, v.name
+FROM vehicle v
+WHERE v.owner.name = :owner_name;</code></pre><p>Truy vấn tọa độ trả xe 1 và 3 với dữ liệu mẫu. Với tên “An”, truy vấn thứ hai trả xe 1 và 4. Trong ứng dụng thật, dùng định danh chủ xe nếu nhiều người có cùng tên.</p></details>
+<details><summary>Bài Moodle · Tổng theo xe và mọi xe đồng hạng nhất</summary><pre><code>CREATE VIEW vehicle_maintenance_totals AS
+SELECT v.id, v.name,
+  COALESCE((SELECT SUM(m.cost) FROM TABLE(v.maintenances) m), 0) AS total_cost
+FROM vehicle v;
+
+SELECT id, name, total_cost
+FROM vehicle_maintenance_totals
+ORDER BY id;
+
+SELECT id, name, total_cost
+FROM vehicle_maintenance_totals
+WHERE total_cost = (SELECT MAX(total_cost) FROM vehicle_maintenance_totals)
+ORDER BY id;</code></pre><p>View tổng hợp trả một dòng mỗi xe. Xe 3 có tổng 0 vì collection rỗng. Xe 1 và 2 đồng hạng ở mức 1.200.000 VND.</p></details>
+<fieldset class="quiz" data-answer="c" data-correct="Đúng. Bảng có một giá trị Location cho mỗi xe và một collection cần mở ra khi duyệt các lần bảo trì." data-wrong="Tọa độ là một thuộc tính trong object. Danh sách bảo trì có nhiều phần tử nên cần thao tác ở cấp collection.">
+<legend>Tự kiểm tra · Hai biểu thức nào phù hợp?</legend>
+<label><input type="radio" name="q-obj" value="a"> TABLE(v.location) và v.maintenances.cost.</label>
+<label><input type="radio" name="q-obj" value="b"> Cả hai đều dùng TABLE(...).</label>
+<label><input type="radio" name="q-obj" value="c"> v.location.x để đọc x, TABLE(v.maintenances) để duyệt các lần bảo trì.</label>
+<p class="feedback" role="status" hidden></p>
+</fieldset>
+</div>
+</section>
+
+<section class="chapter" id="phan-tan" data-title="CSDL phân tán">
+<div class="hero compact"><span class="kicker">Chương 3 · Kiến trúc hệ thống</span><h1>CSDL phân tán</h1><p>Chia dữ liệu để chịu tải, sao chép để tăng khả năng phục vụ và xác định hành vi khi mạng gặp sự cố.</p></div>
+<div class="panel">
+<h2>Phân mảnh, cấp phát và sao chép</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Ba quyết định về dữ liệu phân tán"><table><thead><tr><th>Quyết định</th><th>Câu hỏi</th><th>Ví dụ</th></tr></thead><tbody>
+<tr><td>Phân mảnh ngang</td><td>Các hàng được chia ra sao?</td><td><code>Orders</code> chia theo <code>branchId</code>. Có thể ghép lại bằng hợp các mảnh khi mỗi đơn thuộc đúng một mảnh.</td></tr>
+<tr><td>Phân mảnh dọc</td><td>Các cột được chia ra sao?</td><td>Thông tin liên hệ tách khỏi hồ sơ kỹ thuật; cùng giữ khóa <code>vehicleId</code> để nối khôi phục.</td></tr>
+<tr><td>Cấp phát</td><td>Mỗi mảnh nằm ở đâu?</td><td>Mảnh TP.HCM đặt gần người dùng TP.HCM để đọc và ghi cục bộ thường xuyên.</td></tr>
+<tr><td>Sao chép</td><td>Có bao nhiêu bản của cùng mảnh?</td><td>Giữ thêm bản sao mảnh TP.HCM ở Đà Nẵng để phục vụ các mục tiêu chịu lỗi hoặc đọc.</td></tr>
+</tbody></table></div>
+<p><strong>Kiểm tra thiết kế phân mảnh:</strong> dữ liệu gốc được bao phủ, có thể tái thiết quan hệ gốc, và các mảnh ngang thường không chồng lấn khi thiết kế phân hoạch. Với phân mảnh dọc, khóa có thể lặp để JOIN. <strong>Chọn khóa:</strong> theo chi nhánh giúp thao tác cục bộ, nhưng một chi nhánh lớn có thể tạo điểm nóng. Báo cáo toàn quốc có thể cần đọc nhiều mảnh rồi hợp kết quả.</p>
+<div class="grid">
+<div class="card"><h3>Sao chép đồng bộ</h3><p>Xác nhận ghi sau khi đạt điều kiện xác nhận từ các bản sao theo cấu hình. Điều này tăng chi phí phối hợp và phụ thuộc vào độ trễ mạng.</p></div>
+<div class="card"><h3>Sao chép bất đồng bộ</h3><p>Có thể xác nhận ở nút chính rồi chuyển thay đổi sau. Đọc từ bản sao có thể thấy dữ liệu cũ. Khi chuyển nút chưa bắt kịp thành nút chính, dữ liệu đã xác nhận có thể bị mất tùy cơ chế.</p></div>
+</div>
+</div>
+<div class="panel">
+<h2>CAP · Điều gì xảy ra khi mạng bị chia cắt?</h2>
+<p><strong>C</strong> trong kết quả CAP là tính nhất quán mạnh theo nghĩa tuyến tính hóa. <strong>A</strong> yêu cầu mỗi yêu cầu gửi tới nút còn hoạt động nhận được phản hồi hợp lệ theo đặc tả. <strong>P</strong> xét khả năng chịu việc các nút không trao đổi được thông điệp. Khi có phân hoạch mạng, không thể đảm bảo đồng thời C và A theo mô hình này.</p>
+<div class="demo">
+<label for="cap-mode">Thử chính sách khi hai chi nhánh mất liên lạc</label>
+<select id="cap-mode"><option value="strong">Chỉ xác nhận sau khi phối hợp đủ nút</option><option value="available">Cho cả hai phía cập nhật cục bộ</option></select>
+<output id="cap-result" aria-live="polite">Nếu phía nhận yêu cầu không thể phối hợp đủ nút, yêu cầu giữ chỗ phải chờ hoặc bị từ chối. Hệ thống tránh xác nhận trùng chỗ trong kịch bản này.</output>
+</div>
+<p><strong>Ví dụ.</strong> Một vé cuối có thể đặt ở cả hai chi nhánh. Nếu cả hai được xác nhận cục bộ khi mất liên lạc, cùng một vé có thể được hứa cho hai người. Nếu thuật toán yêu cầu phối hợp trước khi xác nhận, phía không đạt điều kiện phối hợp phải từ chối hoặc chờ.</p>
+<div class="note"><strong>Giao dịch qua nhiều mảnh.</strong> Khi vừa trừ chỗ trên một mảnh vừa tạo đơn trên mảnh khác, cần xác định điều kiện thành công chung. Two-phase commit (2PC) là một giao thức quyết định commit/abort giữa các bên; trong một số sự cố, các bên đã chuẩn bị có thể phải chờ quyết định. Sao chép bản ghi và cam kết giao dịch là hai vấn đề khác nhau.</div>
+<details><summary>Bài chuyển dạng · Chia bảng Orders cho 3 chi nhánh</summary><p>Thiết kế hợp lý ban đầu là phân mảnh ngang theo chi nhánh và đặt mỗi mảnh gần nơi phát sinh giao dịch. Báo cáo doanh thu cả nước lấy tổng từ từng mảnh. Nếu đọc từ bản sao bất đồng bộ, cần nói rõ báo cáo chấp nhận độ trễ dữ liệu bao nhiêu hoặc dùng mốc dữ liệu đã đồng bộ.</p></details>
+<fieldset class="quiz" data-answer="a" data-correct="Đúng. Chia các hàng là phân mảnh ngang. Giữ thêm một bản của mỗi mảnh là sao chép." data-wrong="Hãy tách quyết định chia hàng với quyết định giữ thêm bản của dữ liệu đã chia.">
+<legend>Tự kiểm tra · Chia đơn theo chi nhánh rồi lưu hai bản cho mỗi phần là gì?</legend>
+<label><input type="radio" name="q-dist" value="a"> Phân mảnh ngang và sao chép.</label>
+<label><input type="radio" name="q-dist" value="b"> Chỉ phân mảnh dọc.</label>
+<label><input type="radio" name="q-dist" value="c"> Chỉ sao chép toàn bộ bảng.</label>
+<p class="feedback" role="status" hidden></p>
+</fieldset>
+</div>
+</section>
+
+
+
+<section class="chapter" id="di-dong" data-title="CSDL di động">
+<div class="hero compact"><span class="kicker">Chương 4 · Dữ liệu khi mất mạng</span><h1>CSDL di động</h1><p>Giữ ứng dụng hữu ích khi thiết bị mất mạng và đưa cập nhật về máy chủ an toàn khi kết nối trở lại.</p></div>
+<div class="panel">
+<h2>Luồng offline-first</h2>
+<p>Điện thoại của tài xế có thể mất sóng tại bãi hàng. Ứng dụng vẫn phải mở được danh sách chuyến đã tải và cho phép ghi nhận thao tác phù hợp với nghiệp vụ. Điều kiện quan trọng là người dùng biết thao tác đã lưu cục bộ hay đã được máy chủ xác nhận.</p>
+<div class="flow" aria-label="Luồng đồng bộ dữ liệu di động"><span>Ghi cục bộ</span><b aria-hidden="true">→</b><span>Xếp hàng thay đổi</span><b aria-hidden="true">→</b><span>Gửi lại khi có mạng</span><b aria-hidden="true">→</b><span>Đồng bộ kết quả</span></div>
+<ol>
+<li><strong>Đọc.</strong> Giao diện lấy dữ liệu từ CSDL cục bộ, chẳng hạn SQLite. Đồng bộ bản mới về rồi cập nhật CSDL cục bộ để giao diện thấy thay đổi.</li>
+<li><strong>Ghi.</strong> Lưu thao tác và mục hàng đợi trong cùng giao dịch cục bộ nếu có thể. Gắn <code>operationId</code>, ID bản ghi và phiên bản gốc. Hiển thị trạng thái “chờ đồng bộ”.</li>
+<li><strong>Thử lại.</strong> Nếu mất phản hồi, gửi lại cùng <code>operationId</code>. Máy chủ nhận biết thao tác đã xử lý và trả kết quả cũ hoặc phản hồi tương đương, tránh ghi tác dụng hai lần.</li>
+<li><strong>Đối chiếu.</strong> Khi phiên bản trên máy chủ đã đổi, áp dụng quy tắc nghiệp vụ. Giữ lại thông tin xung đột khi người dùng cần quyết định.</li>
+</ol>
+</div>
+<div class="panel">
+<h2>Chọn cách xử lý theo loại thay đổi</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Cách xử lý thay đổi offline"><table><thead><tr><th>Tình huống</th><th>Cách xử lý</th><th>Điểm cần cân nhắc</th></tr></thead><tbody>
+<tr><td>Hai thiết bị thêm hai ảnh khác nhau vào biên bản</td><td>Hợp nhất theo ID ảnh.</td><td>Khử trùng nếu cùng thao tác được gửi lại.</td></tr>
+<tr><td>Hai người sửa cùng trường ghi chú</td><td>Chọn chính sách theo nhu cầu: phiên bản mới nhất do máy chủ xác định hoặc cho người dùng chọn.</td><td>Chọn phiên bản cuối có thể bỏ một thay đổi. Đồng hồ thiết bị có thể lệch.</td></tr>
+<tr><td>Một tài xế báo “đã giao”, điều phối viên báo “đã hủy”</td><td>Dùng quy tắc chuyển trạng thái, từ chối cập nhật trái quy tắc hoặc chuyển sang xử lý thủ công.</td><td>Hai thay đổi cùng ảnh hưởng đến một trạng thái nghiệp vụ quan trọng.</td></tr>
+</tbody></table></div>
+<details><summary>Bài chuyển dạng · Số phiên bản và mã thao tác</summary><p>Ứng dụng gửi cập nhật dựa trên phiên bản 7, nhưng máy chủ đã ở phiên bản 8. Mã thao tác hỗ trợ nhận biết lần gửi trùng. Phiên bản gốc giúp phát hiện dữ liệu đã thay đổi giữa lúc đọc và lúc đồng bộ. Cần cả hai nếu muốn xử lý hai tình huống này.</p></details>
+<fieldset class="quiz" data-answer="b" data-correct="Đúng. Cùng operationId giúp máy chủ nhận ra đây là một lần gửi lại." data-wrong="Lỗi nằm ở việc không biết lần gửi trước đã được xử lý hay chưa. Hãy giữ định danh của thao tác khi thử lại.">
+<legend>Tự kiểm tra · Máy chủ có thể đã nhận thao tác nhưng ứng dụng mất phản hồi. Làm gì?</legend>
+<label><input type="radio" name="q-mobile" value="a"> Tạo ID thao tác mới cho mọi lần thử lại.</label>
+<label><input type="radio" name="q-mobile" value="b"> Gửi lại cùng ID và để máy chủ xử lý trùng lặp.</label>
+<label><input type="radio" name="q-mobile" value="c"> Đổi ngày thiết bị để thao tác được ưu tiên.</label>
+<p class="feedback" role="status" hidden></p>
+</fieldset>
+</div>
+</section>
+
+<section class="chapter" id="blockchain" data-title="Blockchain">
+<div class="hero compact"><span class="kicker">Chương 5 · Chia sẻ sổ cái</span><h1>Blockchain dưới góc nhìn CSDL</h1><p>Hiểu cấu trúc khối, vai trò của đồng thuận và điều kiện để một sổ cái dùng chung có ích.</p></div>
+<div class="panel">
+<h2>Mỗi cơ chế giải quyết một câu hỏi</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Cơ chế trong blockchain"><table><thead><tr><th>Cơ chế</th><th>Giải quyết gì?</th><th>Giới hạn</th></tr></thead><tbody>
+<tr><td>Hàm băm liên kết khối</td><td>Khối tham chiếu hàm băm của khối trước. Sửa nội dung cũ làm thay đổi giá trị băm và ảnh hưởng đến chuỗi liên kết.</td><td>Giá trị băm chỉ có ích khi có căn cứ để đối chiếu chuỗi hoặc mốc đã được công nhận.</td></tr>
+<tr><td>Chữ ký số</td><td>Kiểm tra dữ liệu đã được ký bởi bên giữ khóa tương ứng và phát hiện sửa đổi sau khi ký.</td><td>Chữ ký không xác minh kiện hàng ngoài đời đã thực sự được giao.</td></tr>
+<tr><td>Đồng thuận và xác thực</td><td>Giúp các thành viên thống nhất lịch sử được chấp nhận theo quy tắc của mạng và mô hình lỗi của giao thức.</td><td>Chi phí phối hợp và thời gian hoàn tất phụ thuộc giao thức, cấu hình và mức độ tin cậy.</td></tr>
+</tbody></table></div>
+<div class="flow" aria-label="Liên kết các khối bằng hàm băm"><span>Khối 1</span><b aria-hidden="true">→</b><span>Khối 2 chứa hash của khối 1</span><b aria-hidden="true">→</b><span>Khối 3 chứa hash của khối 2</span></div>
+<p><strong>Quyền tham gia.</strong> Mạng permissioned giới hạn ai được tham gia hoặc xác thực theo chính sách. Trong mạng permissionless, việc tham gia có thể mở theo quy tắc giao thức. Doanh nghiệp còn cần xác định quyền đọc, quyền ghi và cách quản trị thành viên.</p>
+</div>
+<div class="panel">
+<h2>Tình huống · Xác minh lịch sử bàn giao</h2>
+<p>Ba công ty vận tải cùng cập nhật trạng thái bàn giao. Nếu mỗi bên muốn tự xác minh lịch sử và các bên có thể cùng quản trị quy tắc ghi, sổ cái permissioned là một phương án để đánh giá. Nếu tất cả đã tin một đơn vị vận hành chung, CSDL tập trung với phân quyền, nhật ký kiểm toán và chữ ký có thể đáp ứng cùng yêu cầu với ít bước phối hợp hơn.</p>
+<p>Một thiết kế có thể lưu mã sự kiện, thời điểm, chữ ký và hash của biên bản lên sổ cái. Bản biên bản chi tiết lưu trong hệ thống có kiểm soát truy cập. Truy vấn báo cáo lớn có thể dùng kho dữ liệu riêng nhận sự kiện từ sổ cái.</p>
+<details><summary>Bài chuyển dạng · Biên bản nhập sai số lượng</summary><p>Thêm một sự kiện đính chính tham chiếu sự kiện cũ, ghi bên chịu trách nhiệm và giá trị mới. Ứng dụng hiển thị trạng thái hiệu lực dựa trên lịch sử sự kiện. Việc chọn cách công bố và lưu dữ liệu cá nhân cần được tính từ lúc thiết kế.</p></details>
+<fieldset class="quiz" data-answer="c" data-correct="Đúng. Hash chỉ giúp đối chiếu nội dung biên bản với giá trị đã ghi. Cần căn cứ riêng để xác minh việc bàn giao thực tế." data-wrong="Hãy phân biệt toàn vẹn của biên bản với độ đúng của sự kiện ngoài đời.">
+<legend>Tự kiểm tra · Hash của biên bản trùng với hash đã ghi giúp xác nhận điều gì?</legend>
+<label><input type="radio" name="q-chain" value="a"> Kiện hàng chắc chắn đã đến nơi.</label>
+<label><input type="radio" name="q-chain" value="b"> Ai cũng có quyền đọc biên bản gốc.</label>
+<label><input type="radio" name="q-chain" value="c"> Nội dung biên bản đang kiểm tra khớp với giá trị băm đã ghi, theo giả định an toàn của hàm băm.</label>
+<p class="feedback" role="status" hidden></p>
+</fieldset>
+</div>
+</section>
+
+<section class="chapter" id="newsql" data-title="NewSQL">
+<div class="hero compact"><span class="kicker">Chương 6 · Giao dịch trên nhiều nút</span><h1>NewSQL</h1><p>Giữ mô hình quan hệ và giao dịch ACID, đồng thời mở rộng xử lý giao dịch trên nhiều máy.</p></div>
+<div class="panel">
+<h2>NewSQL giải bài toán nào?</h2>
+<p>Giả sử hệ thống đặt chỗ cần SQL, các ràng buộc nghiệp vụ và giao dịch, nhưng lưu lượng ghi đã vượt khả năng của một máy. NewSQL là tên thường dùng trong tài liệu cho một nhóm hệ quản trị nhắm đến mở rộng workload <strong>OLTP</strong> theo chiều ngang trong khi duy trì mô hình quan hệ và giao dịch ACID. OLTP gồm nhiều giao dịch nhỏ như đặt chỗ, thanh toán hoặc đổi trạng thái đơn.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="So sánh các lựa chọn hệ quản trị"><table><thead><tr><th>Phương án</th><th>Khi đáng cân nhắc</th><th>Đánh đổi</th></tr></thead><tbody>
+<tr><td>SQL với một nút ghi chính</td><td>Giao dịch cần ràng buộc, workload nằm trong giới hạn một nút ghi.</td><td>Đơn giản hơn để vận hành. Bản sao đọc hỗ trợ đọc nhưng nút chính vẫn xử lý ghi theo kiến trúc này.</td></tr>
+<tr><td>NoSQL document hoặc graph</td><td>Hình dạng dữ liệu hoặc truy vấn quan hệ là yêu cầu nổi bật.</td><td>Cần xem riêng giao dịch, tính nhất quán và khả năng truy vấn của từng sản phẩm.</td></tr>
+<tr><td>NewSQL / một hệ SQL phân tán phù hợp</td><td>Cần SQL, giao dịch và mở rộng giao dịch nhiều nút.</td><td>Giao dịch qua nhiều mảnh hoặc vùng có thêm độ trễ phối hợp. Khóa phân vùng và cách đặt dữ liệu vẫn quan trọng.</td></tr>
+</tbody></table></div>
+<p><strong>Ví dụ.</strong> Đặt chỗ và tạo đơn trên cùng mảnh thường giảm phối hợp. Nếu phải cập nhật số chỗ ở một vùng và tạo đơn ở vùng khác, giao dịch có thể cần phối hợp cả hai. Cần đánh giá độ trễ ở mức tải thật, tỷ lệ giao dịch qua mảnh và cách hệ thống xử lý sự cố mạng.</p>
+<div class="note">NewSQL là tên nhóm hệ thống trong tài liệu tham khảo. Khi phân tích một sản phẩm cụ thể, hãy nêu rõ mức cô lập, mô hình sao chép và bảo đảm khi mất mạng của chính sản phẩm đó.</div>
+<details><summary>Bài chuyển dạng · Bổ sung bản sao đọc có đủ không?</summary><p>Nếu điểm nghẽn là truy vấn đọc, bản sao đọc có thể giúp. Nếu điểm nghẽn là cập nhật chỗ ngồi trên nút ghi và vẫn phải giữ giao dịch, cần phân tích cách chia workload ghi, mức tranh chấp trên cùng dữ liệu và chi phí phối hợp.</p></details>
+<fieldset class="quiz" data-answer="a" data-correct="Đúng. Nhu cầu đồng thời có SQL, giao dịch và mở rộng OLTP là lý do để cân nhắc NewSQL." data-wrong="Hãy tìm tình huống cần giữ giao dịch và SQL khi tải ghi phải mở rộng ra nhiều nút.">
+<legend>Tự kiểm tra · Yêu cầu nào khiến NewSQL đáng cân nhắc nhất?</legend>
+<label><input type="radio" name="q-new" value="a"> Giao dịch nhiều chi nhánh, cần SQL, ACID và mở rộng tải ghi.</label>
+<label><input type="radio" name="q-new" value="b"> Lưu cache theo một khóa duy nhất.</label>
+<label><input type="radio" name="q-new" value="c"> Chỉ cần tìm đường qua mạng bạn bè.</label>
+<p class="feedback" role="status" hidden></p>
+</fieldset>
+</div>
+</section>
+
+
+
+<section class="chapter" id="on-tap" data-title="Ôn tích hợp · Đề mô phỏng">
+<div class="hero compact"><span class="kicker">Chương 7 · Vận dụng</span><h1>Ôn tích hợp</h1><p>Tự làm một đề 90 phút với tình huống mới. Phân bổ dưới đây dành cho luyện tập.</p></div>
+<div class="panel">
+<h2>Cách viết câu trả lời thiết kế</h2>
+<ol>
+<li><strong>Nêu yêu cầu chi phối.</strong> Dữ liệu nào đọc cùng nhau? Có giao dịch bắt buộc? Ai được quyền ghi?</li>
+<li><strong>Mô tả lựa chọn cụ thể.</strong> Vẽ nhóm dữ liệu, kiểu và quan hệ hoặc vị trí đặt các mảnh.</li>
+<li><strong>Minh họa bằng một thao tác.</strong> Viết truy vấn, mô tả đường đi hoặc theo dõi một lần mất mạng.</li>
+<li><strong>Giải thích đánh đổi.</strong> Đề cập độ trễ, trùng dữ liệu, tính nhất quán hay chi phí vận hành khi liên quan.</li>
+</ol>
+</div>
+<div class="panel">
+<h2>Đề mô phỏng · Hệ thống mượn thiết bị</h2>
+<p>Một trường cho mượn thiết bị tại ba cơ sở. Mỗi phiếu lưu nhiều thiết bị, số lượng và giá thay thế tại lúc bàn giao. Sinh viên thuộc câu lạc bộ. Câu lạc bộ có thể dùng chung thiết bị. Ứng dụng kiểm kê cần dùng offline, còn một số thiết bị được luân chuyển qua đơn vị đối tác.</p>
+<ol>
+<li><strong>25 phút · NoSQL.</strong> Thiết kế một phiếu document. Trình bày pipeline tính tổng số lượng theo loại thiết bị và theo tháng. Vẽ một mẫu graph để tìm câu lạc bộ từng mượn cùng loại thiết bị với câu lạc bộ đang xét.</li>
+<li><strong>15 phút · Quan hệ–đối tượng.</strong> Mô tả kiểu tọa độ cho kho và collection các lần kiểm định. Viết truy vấn hoặc SQL giả lấy tổng chi phí kiểm định theo kho, kể cả kho chưa kiểm định.</li>
+<li><strong>25 phút · Phân tán và di động.</strong> Chia phiếu giữa ba cơ sở. Giải thích cách xử lý khi hai phía cùng yêu cầu thiết bị cuối trong lúc mạng bị chia cắt. Mô tả cách ứng dụng đồng bộ hai lần thử gửi của cùng một phiếu kiểm kê.</li>
+<li><strong>15 phút · Blockchain và NewSQL.</strong> Trình bày khi nào đối tác cần sổ cái chung. Giải thích khi nào hệ SQL phân tán đáng cân nhắc cho việc tạo phiếu và giữ thiết bị.</li>
+<li><strong>10 phút · Rà bài.</strong> Kiểm tra định danh, chiều quan hệ, đơn vị tính tổng, kết quả khi không có dữ liệu và giả định khi mất mạng.</li>
+</ol>
+<details><summary>Mở gợi ý chấm sau khi làm</summary>
+<ul>
+<li><strong>NoSQL:</strong> một phiếu chứa các dòng thiết bị nhúng, mã thiết bị có thể tham chiếu hồ sơ hiện hành. Tách dòng rồi nhóm theo cặp tháng–loại. Cộng số lượng từng dòng. Với graph, đi từ câu lạc bộ qua phiếu tới loại thiết bị, rồi duyệt quan hệ ngược tới câu lạc bộ khác và khử trùng.</li>
+<li><strong>Quan hệ–đối tượng:</strong> có kiểu tọa độ và kiểu từng lần kiểm định, sau đó tạo nested table. Giữ một dòng mỗi kho bằng truy vấn tổng hợp tương quan hoặc kỹ thuật nối ngoài phù hợp. Tổng của kho chưa kiểm định là 0 nếu nghiệp vụ quy ước như vậy.</li>
+<li><strong>Phân tán và di động:</strong> phân mảnh ngang theo cơ sở, nêu vị trí và số bản sao. Với thiết bị duy nhất, nêu quy tắc cấp quyền xác nhận để tránh trùng, hoặc phân quyền giữ chỗ trước khi mất mạng. Máy chủ dùng mã thao tác để nhận biết gửi lại. Phiên bản gốc phát hiện cập nhật xung đột.</li>
+<li><strong>Blockchain và NewSQL:</strong> phân tích ai được ghi và ai cần tự xác minh lịch sử. Với NewSQL, chỉ ra nhu cầu mở rộng giao dịch giữ thiết bị và tạo phiếu, cùng chi phí giao dịch qua các mảnh.</li>
+</ul>
+</details>
+</div>
+<div class="panel" id="tai-lieu">
+<h2>Tài liệu tham khảo</h2>
+<ul>
+<li><a href="https://sdh.uit.edu.vn/sites/default/files/uploads/files/202504/qd_1010_qd_dhcntt_28_11_2022_ctdt_nganh_cntt_2022.pdf">UIT · Chương trình thạc sĩ CNTT</a>, mục 9.15, trang in 22.</li>
+<li><a href="https://vnuhcmpress.edu.vn/tai-lieu-tham-khao-co-so-du-lieu-nang-cao-b40107.html">NXB ĐHQG-HCM · Cơ sở dữ liệu nâng cao</a>, sách tham khảo về NoSQL, NewSQL và Blockchain. Bài thực hành được tổng hợp từ hai bài Moodle bạn cung cấp.</li>
+<li><a href="https://www.mongodb.com/docs/manual/data-modeling/best-practices/">MongoDB · Thiết kế dữ liệu</a> và <a href="https://www.mongodb.com/docs/manual/reference/operator/aggregation/datetrunc/">gom nhóm theo mốc thời gian</a>.</li>
+<li><a href="https://neo4j.com/docs/cypher-manual/current/patterns/shortest-paths/">Neo4j · Cypher và đường đi ngắn nhất</a>.</li>
+<li><a href="https://docs.oracle.com/en/database/oracle/oracle-database/19/adobj/operations-on-collection-data-types.html">Oracle · Truy vấn collection</a>.</li>
+<li><a href="https://www.comp.nus.edu.sg/~gilbert/biblio.html">Gilbert và Lynch · Công trình về CAP</a> và <a href="https://developer.android.com/topic/architecture/data-layer/offline-first">Android Developers · Offline-first</a>.</li>
+<li><a href="https://doi.org/10.6028/NIST.IR.8202">NIST · Blockchain Technology Overview</a> và <a href="https://db.cs.cmu.edu/papers/2016/pavlo-newsql-sigmodrec2016.pdf">Pavlo và Aslett · What’s Really New with NewSQL?</a>.</li>
+</ul>
+</div>
+</section>
+<footer class="foot">IT2011 · Bài học tự học và ví dụ thực hành</footer>
+</main>
+</div>
+<script>
+(() => {
+  "use strict";
+
+  const chapters = [...document.querySelectorAll(".chapter")];
+  const navigation = document.querySelector("#navigation");
+  const chapterSelect = document.querySelector("#chapter-select");
+  const storageKey = "it2011-vn-completed-v1";
+  const completed = readCompleted();
+
+  function readCompleted() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(storageKey) || "[]");
+      if (Array.isArray(saved)) {
+        return new Set(saved.filter(id => chapters.some(chapter => chapter.id === id)));
+      }
+    } catch {
+      // Progress remains available in this tab if storage is unavailable.
+    }
+    return new Set();
+  }
+
+  function linkTo(chapter, label) {
+    const link = document.createElement("a");
+    link.href = "#" + chapter.id;
+    link.textContent = label;
+    return link;
+  }
+
+  function updateProgress() {
+    const label = completed.size + "/" + chapters.length + " chương hoàn thành";
+    const progress = document.querySelector("#progress");
+    progress.max = chapters.length;
+    progress.value = completed.size;
+    document.querySelector("#progress-label").textContent = label;
+    document.querySelector("#mobile-progress").textContent = label;
+
+    chapters.forEach(chapter => {
+      const done = completed.has(chapter.id);
+      chapter.querySelector(".complete").textContent = done ? "✓ Đã hoàn thành" : "Đánh dấu hoàn thành";
+      chapter.querySelector(".complete").setAttribute("aria-pressed", String(done));
+      navigation.querySelector("[data-chapter='" + chapter.id + "'] .tick").textContent = done ? "✓" : "";
+    });
+  }
+
+  chapters.forEach((chapter, index) => {
+    const title = chapter.dataset.title;
+    const link = linkTo(chapter, "");
+    link.dataset.chapter = chapter.id;
+    const number = document.createElement("span");
+    number.className = "num";
+    number.setAttribute("aria-hidden", "true");
+    number.textContent = String(index).padStart(2, "0");
+    const tick = document.createElement("span");
+    tick.className = "tick";
+    tick.setAttribute("aria-hidden", "true");
+    link.append(number, document.createTextNode(title), tick);
+    navigation.append(link);
+    chapterSelect.add(new Option(title, chapter.id));
+
+    const controls = document.createElement("div");
+    controls.className = "controls";
+    const done = document.createElement("button");
+    done.className = "btn complete";
+    done.type = "button";
+    done.addEventListener("click", () => {
+      if (completed.has(chapter.id)) completed.delete(chapter.id);
+      else completed.add(chapter.id);
+      try {
+        localStorage.setItem(storageKey, JSON.stringify([...completed]));
+      } catch {
+        // A browser may block storage for local files.
+      }
+      updateProgress();
+    });
+
+    const links = document.createElement("div");
+    if (index > 0) {
+      const previous = linkTo(chapters[index - 1], "← Chương trước");
+      previous.className = "btn";
+      links.append(previous);
+    }
+    if (index + 1 < chapters.length) {
+      const next = linkTo(chapters[index + 1], "Chương tiếp →");
+      next.className = "btn primary";
+      links.append(next);
+    }
+    controls.append(done, links);
+    chapter.append(controls);
+  });
+
+  function showChapter(moveFocus) {
+    const target = document.getElementById(location.hash.slice(1));
+    const active = target?.id === "main" ? (chapters.find(chapter => !chapter.hidden) || chapters[0]) : (target?.closest(".chapter") || chapters[0]);
+    chapters.forEach(chapter => {
+      const current = chapter === active;
+      chapter.hidden = !current;
+      const link = navigation.querySelector("[data-chapter='" + chapter.id + "']");
+      if (current) link.setAttribute("aria-current", "page");
+      else link.removeAttribute("aria-current");
+    });
+    chapterSelect.value = active.id;
+    const destination = target && target !== active ? target : active;
+    if (location.hash && target?.id !== "main") {
+      destination.scrollIntoView({ block: "start" });
+      if (moveFocus) {
+        const focusTarget = destination.querySelector("h1, h2") || destination;
+        focusTarget.tabIndex = -1;
+        focusTarget.focus({ preventScroll: true });
+      }
+    } else if (moveFocus && !location.hash) {
+      window.scrollTo(0, 0);
+    }
+  }
+
+  chapterSelect.addEventListener("change", () => { location.hash = chapterSelect.value; });
+  window.addEventListener("hashchange", () => showChapter(true));
+
+  document.querySelectorAll(".quiz").forEach(quiz => {
+    const feedback = quiz.querySelector(".feedback");
+    quiz.addEventListener("change", event => {
+      const correct = event.target.value === quiz.dataset.answer;
+      feedback.textContent = correct ? quiz.dataset.correct : quiz.dataset.wrong;
+      feedback.classList.toggle("good", correct);
+      feedback.hidden = false;
+    });
+  });
+
+  const capMode = document.querySelector("#cap-mode");
+  const capResult = document.querySelector("#cap-result");
+  const strongResult = capResult.textContent;
+  capMode.addEventListener("change", () => {
+    capResult.textContent = capMode.value === "strong" ? strongResult :
+      "Cả hai phía có thể xác nhận từ bản sao đang có. Nếu đều nhìn thấy một chỗ cuối, hai bên có thể bán trùng và phải đối soát sau khi kết nối trở lại.";
+  });
+
+  updateProgress();
+  showChapter(false);
+})();
+</script>
+</body>
+</html>
+
