@@ -601,6 +601,19 @@ SELECT v.id, v.location.distance(location_t(0,0)) AS d FROM vehicle v;</code></p
 <p class="feedback" role="status" hidden></p>
 </fieldset>
 </div>
+<div class="panel" id="phan-tan-cheatsheet">
+<h2>Cheatsheet · CSDL phân tán</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Ôn nhanh CSDL phân tán">
+<table><thead><tr><th>Chủ đề</th><th>Cách áp dụng</th></tr></thead><tbody>
+<tr><td>Phân mảnh và tái thiết</td><td>Chia ngang theo <code>branch_id</code>, dựng lại bằng <code>UNION ALL</code> khi các mảnh đầy đủ và rời nhau. Chia dọc thành <code>Orders_Info</code> và <code>Orders_Amount</code>, giữ <code>order_id</code> ở cả hai để <code>JOIN</code>. Tính doanh thu Đà Nẵng bằng cách lọc <code>branch_id = 'DN'</code> và cộng <code>amount</code> sau khi ghép.</td></tr>
+<tr><td>Cấp phát và sao chép</td><td>Đặt <code>Orders_DN</code> ở Đà Nẵng là cấp phát. Giữ thêm một bản ở HCM là sao chép. Báo cáo toàn quốc lấy đúng một bản của mỗi mảnh để tránh đếm trùng.</td></tr>
+<tr><td>Truy vấn phân tán</td><td>Tính <code>SUM(amount)</code> ngay ở từng site rồi cộng các tổng. Với <code>AVG(amount)</code>, lấy tổng các <code>SUM(amount)</code> chia tổng các <code>COUNT(amount)</code>. Trung bình các AVG địa phương có thể sai khi số đơn khác nhau. <code>COUNT(amount)</code> bỏ qua <code>NULL</code> như <code>AVG(amount)</code>.</td></tr>
+<tr><td>Độ trễ bản sao</td><td>Bất đồng bộ cho phép Đà Nẵng báo ghi thành công trước khi HCM nhận đơn. Nếu mạng đứt trước khi đơn 500.000 đồng được sao chép và đó là cập nhật duy nhất còn thiếu, báo cáo ở HCM thấp hơn 500.000 đồng. Nếu cấu hình đồng bộ yêu cầu HCM xác nhận, Đà Nẵng phải chờ xác nhận mới báo thành công.</td></tr>
+<tr><td>CAP khi đứt mạng</td><td>Chỉ còn một vé. Nếu HCM và Đà Nẵng đều xác nhận đặt vé dựa trên dữ liệu cục bộ, hai khách có thể mua cùng một vé (mất C). Nếu chỉ Đà Nẵng được xử lý đặt vé, HCM không thể phục vụ thao tác đó trong lúc mất liên lạc (mất A).</td></tr>
+<tr><td>2PC</td><td><strong>Prepare:</strong> từng site bỏ phiếu <code>YES</code> hoặc <code>NO</code>. <strong>Commit/abort:</strong> điều phối viên gửi quyết định chung. Site đã bỏ phiếu <code>YES</code> mà mất kết nối phải tìm lại hoặc chờ quyết định. Ví dụ, HCM có thể đã nhận <code>COMMIT</code> và tạo đơn, nên Đà Nẵng tự <code>ABORT</code> sẽ khiến đơn tồn tại nhưng vé bị nhả.</td></tr>
+</tbody></table>
+</div>
+</div>
 </section>
 
 
@@ -896,6 +909,7 @@ FROM resident AS r;</code></pre>
 <li><label><input type="checkbox"> Oracle: CREATE TYPE, nested table và VARRAY, bí danh khi dùng dấu chấm, TABLE(), REF/DEREF, UNDER</label></li>
 <li><label><input type="checkbox"> Phân tán: phân mảnh ngang nguyên thủy và dẫn xuất, dọc, hỗn hợp, tái thiết bằng UNION hoặc JOIN, cấp phát và sao chép</label></li>
 <li><label><input type="checkbox"> Phân tán: vẽ cây truy vấn, chọn site, đẩy lọc và chiếu, tính số dòng thực sự qua mạng</label></li>
+<li><label><input type="checkbox"> Phân tán: tính SUM và AVG qua nhiều site, đọc bản sao bất đồng bộ, giải thích ví dụ vé cuối trong CAP và trạng thái sau YES trong 2PC</label></li>
 <li><label><input type="checkbox"> Không gian: POINT, LINESTRING, POLYGON, SRID, mét và độ, topology và trường hợp chạm biên</label></li>
 <li><label><input type="checkbox"> Không gian: viết truy vấn bán kính và gần nhất, ghép điểm với vùng, tính vùng phục vụ và đọc kế hoạch sử dụng GiST</label></li>
 <li><label><input type="checkbox"> CSDL di động: định nghĩa, 4 đặc điểm, client–server và P2P, đặc điểm môi trường, <strong>7 yêu cầu</strong></label></li>
