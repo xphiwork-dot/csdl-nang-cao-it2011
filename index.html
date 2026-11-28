@@ -92,8 +92,8 @@ details[open] summary{margin-bottom:.5rem}
   <nav id="navigation" aria-label="Chương"></nav>
   <div class="progress-box">
     <strong>Tiến độ học</strong>
-    <progress id="progress" value="0" max="8" aria-label="Tiến độ học"></progress>
-    <span id="progress-label">0/8 chương hoàn thành</span>
+    <progress id="progress" value="0" max="9" aria-label="Tiến độ học"></progress>
+    <span id="progress-label">0/9 chương hoàn thành</span>
   </div>
   <a class="reference" href="#tai-lieu">Tài liệu tham khảo</a>
 </aside>
@@ -120,19 +120,22 @@ details[open] summary{margin-bottom:.5rem}
 <tbody>
 <tr><td>Dữ liệu có hình dạng gì? Truy vấn đi theo thuộc tính hay quan hệ?</td><td>NoSQL, hướng đối tượng, quan hệ–đối tượng</td><td>Đọc cả đơn một lượt, khám phá mạng tuyến đường, hoặc lưu tọa độ như một kiểu dữ liệu.</td></tr>
 <tr><td>Dữ liệu nằm ở đâu? Chuyện gì xảy ra khi một nút hoặc đường truyền gặp sự cố?</td><td>CSDL phân tán, NewSQL</td><td>Các chi nhánh cần đọc đơn nhanh và cập nhật số chỗ nhất quán.</td></tr>
+<tr><td>Đối tượng nằm ở đâu, gần gì và thuộc vùng nào?</td><td>CSDL không gian, topology GIS</td><td>Tìm cây gần tuyến đường và xác định trường học thuộc quận nào.</td></tr>
 <tr><td>Ai có thể ghi? Thiết bị có luôn kết nối? Các bên tin cậy nhau đến đâu?</td><td>CSDL di động, Blockchain</td><td>Tài xế ghi nhận offline. Nhiều đối tác có thể cần cùng xác minh lịch sử bàn giao.</td></tr>
 </tbody></table></div>
 <p><strong>Các trục này có thể kết hợp.</strong> Ví dụ, document là mô hình dữ liệu, còn phân tán là cách đặt và quản lý dữ liệu trên nhiều nút. Một cơ sở dữ liệu document có thể chạy trên một máy hoặc trên nhiều máy.</p>
 </div>
 <div class="panel">
-<h2>Lộ trình đã chốt</h2>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Lộ trình và phân bổ thời gian"><table><thead><tr><th>Thời gian ôn</th><th>Chương</th><th>Tự làm được</th></tr></thead><tbody>
-<tr><td><strong>35%</strong></td><td><a href="#doi-tuong">Hướng đối tượng / quan hệ–đối tượng</a></td><td>Trình bày khái niệm OODB, chuyển UML sang ODL, so sánh OODBMS–RDBMS và dùng kiểu đối tượng trong Oracle.</td></tr>
-<tr><td><strong>25%</strong></td><td><a href="#nosql">NoSQL</a></td><td>Thiết kế document, viết aggregation MongoDB và truy vấn graph Neo4j.</td></tr>
-<tr><td><strong>25%</strong></td><td><a href="#di-dong">CSDL di động</a></td><td>Nêu định nghĩa, kiến trúc, 7 yêu cầu, các sản phẩm và phân tích đồng bộ khi mất mạng.</td></tr>
-<tr><td><strong>15%</strong></td><td><a href="#phan-tan">Phân tán</a>, <a href="#blockchain">Blockchain</a>, <a href="#newsql">NewSQL</a> và <a href="#on-tap">ôn tổng hợp</a></td><td>Phân tích sao chép, CAP, mô hình tin cậy; chọn mô hình cho đề mới.</td></tr>
+<h2>Lộ trình ôn theo tài liệu môn học</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Lộ trình ôn tập"><table><thead><tr><th>Chủ đề</th><th>Tự làm được</th></tr></thead><tbody>
+<tr><td><a href="#doi-tuong">Hướng đối tượng và quan hệ–đối tượng</a></td><td>Vẽ UML, chuyển sang ODL, viết OQL. Ôn riêng kiểu đối tượng và collection trong Oracle.</td></tr>
+<tr><td><a href="#phan-tan">CSDL phân tán</a></td><td>Viết biểu thức phân mảnh, cấp phát theo site, vẽ cây truy vấn và ước tính dữ liệu truyền qua mạng.</td></tr>
+<tr><td><a href="#khong-gian">CSDL không gian và GIS</a></td><td>Chọn hệ tọa độ và hàm PostGIS, xử lý điểm trên biên, tính vùng phục vụ và đọc kế hoạch truy vấn.</td></tr>
+<tr><td><a href="#nosql">NoSQL</a></td><td>Thiết kế document, viết aggregation MongoDB và truy vấn đồ thị Neo4j.</td></tr>
+<tr><td><a href="#di-dong">CSDL di động</a></td><td>Giải thích kiến trúc, yêu cầu của DBMS di động và cách đồng bộ khi kết nối trở lại.</td></tr>
+<tr><td><a href="#blockchain">Blockchain</a> và <a href="#newsql">NewSQL</a></td><td>Ôn khái niệm và tình huống áp dụng theo chương trình và sách tham khảo.</td></tr>
 </tbody></table></div>
-<p class="sub">Tỷ lệ dùng để chia thời gian học. Thầy đã đăng hai slide (<em>Bài giảng CSDL số 1 – HĐT</em> và <em>số 5 – Mobile DB</em>) cùng hai bài tập (CSDL quan hệ đối tượng trên Oracle; NoSQL với MongoDB và Neo4j), nên các phần này được ưu tiên. Phân tán, Blockchain, NewSQL lấy từ mục 9.15 của UIT và sách tham khảo, chưa thấy tài liệu riêng của thầy. Phạm vi và cấu trúc thi cuối kỳ của lớp chưa được xác minh.</p>
+<p class="sub">Làm trước các bài vận dụng có trong tài liệu lớp. Dùng <a href="#on-tap">đề mô phỏng và checklist</a> để tìm phần còn yếu. Phạm vi đề cuối kỳ chưa được xác minh.</p>
 <p>Đọc từ trên xuống hoặc chọn chương trong mục lục. Làm câu tự kiểm tra rồi đánh dấu hoàn thành. Tiến độ lưu trong trình duyệt nếu tính năng lưu trữ được hỗ trợ.</p>
 </div>
 <div class="panel">
@@ -316,44 +319,47 @@ ORDER BY influence DESC LIMIT 5;</code></pre><p>Nếu muốn đo ảnh hưởng 
 </fieldset>
 </div>
 <div class="panel">
-<h2>Chuẩn ODMG và chuyển UML sang ODL</h2>
-<p><strong>ODMG</strong> (Object Data Management Group, 1991) ra đời để tạo một chuẩn chung khi trước đó chưa có, giúp chuyển đổi giữa các sản phẩm và chuẩn hóa mô hình, truy vấn, lập trình. Gồm <strong>ODL</strong> (Object Definition Language, tương tự DDL trong SQL) và <strong>OQL</strong> (Object Query Language, cú pháp gần SQL).</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Quy tắc chuyển UML sang ODL"><table><thead><tr><th>Trên sơ đồ UML</th><th>Trong ODL</th></tr></thead><tbody>
-<tr><td>Lớp, thuộc tính, phương thức</td><td><code>class</code>, <code>attribute</code>, khai báo hàm</td></tr>
-<tr><td>Thuộc tính phức hợp</td><td><code>attribute struct ...</code></td></tr>
-<tr><td>Liên kết 1 —— *</td><td><code>relationship</code> + <code>inverse</code>: phía “1” giữ <code>Set&lt;…&gt;</code>, phía “nhiều” giữ một tham chiếu đơn</td></tr>
-<tr><td>Hợp thành ◆ 1..*</td><td>Thuộc tính kiểu tập hợp, ví dụ <code>List&lt;DongBanHang&gt;</code></td></tr>
-<tr><td>Khái quát hóa</td><td><code>extends</code> + <code>(extent …)</code>. Extent là tập mọi thể hiện được lưu của lớp, tương tự một bảng</td></tr>
+<h2>Từ sơ đồ UML đến ODL và OQL</h2>
+<p>Trong chuẩn ODMG, UML mô tả lớp và liên kết, ODL khai báo lược đồ đối tượng, còn OQL truy vấn các đối tượng đã lưu. Ví dụ dưới đây chuyển thể bài bán hàng ở slide 17–20 của <em>Bài giảng CSDLNC số 3 – HĐT</em>.</p>
+<ol>
+<li><strong>Đọc UML.</strong> Mỗi quầy xử lý nhiều phiên, mỗi phiên thuộc một quầy. Một phiên chứa nhiều dòng bán hàng. Dùng danh sách nếu thứ tự dòng có ý nghĩa.</li>
+<li><strong>Viết ODL.</strong> Dùng hai <code>relationship</code> và <code>inverse</code> cho liên kết quầy–phiên. Quầy giữ tập phiên, mỗi phiên giữ một tham chiếu quầy. <code>extent</code> đặt tên cho tập đối tượng của lớp dùng để truy vấn.</li>
+<li><strong>Viết OQL.</strong> Bắt đầu từ extent, đi theo thuộc tính qua tham chiếu đơn, rồi khai báo thêm biến duyệt nếu cần mở từng phần tử của collection.</li>
+</ol>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Ánh xạ UML sang ODL"><table><thead><tr><th>Quan hệ UML</th><th>Biểu diễn trong ví dụ</th></tr></thead><tbody>
+<tr><td>Quầy 1 — 0..* Phiên bán hàng</td><td><code>HBH.banHang</code> là tập phiên. <code>PhienBanHang.ghiNhan</code> là một quầy. Hai đầu tham chiếu ngược bằng <code>inverse</code>.</td></tr>
+<tr><td>Phiên bán hàng 1 ◆— 1..* Dòng bán hàng</td><td><code>gomCo</code> là danh sách dòng. Kiểm tra quy tắc tối thiểu một dòng và sở hữu theo phiên khi triển khai.</td></tr>
+<tr><td>Thanh toán tiền mặt và thẻ kế thừa Thanh toán</td><td>Hai lớp con dùng <code>extends ThanhToan</code>. Có thể khai báo extent riêng để truy vấn từng lớp con.</td></tr>
+<tr><td>Địa chỉ của cửa hàng</td><td>Thuộc tính phức hợp có thể biểu diễn bằng <code>struct</code>.</td></tr>
 </tbody></table></div>
-<details><summary>Ví dụ ODL · Bán hàng (dạng rất có thể ra thi)</summary><pre><code>class CuaHang {
-  attribute string(30) tenGoi;
-  attribute struct DiaChi { char(3) soPho; char(20) tenPho; char(15) tinhThanh; } diaChi;
-  void addSale();
+<details open><summary>ODL · Khai báo quầy, phiên và dòng bán hàng</summary><pre><code>class DongBanHang {
+  attribute long soLuong;
+  attribute double donGia;
 };
 
-class HBH {
-  attribute string(25) hangTruong;
-  relationship Set&lt;PhienBanHang&gt; banHang inverse PhienBanHang::ghiNhan;  // phía "1"
-  void enterItems(); void endSale();
+class HBH (extent CacQuay) {
+  attribute string hangTruong;
+  relationship Set&lt;PhienBanHang&gt; banHang inverse PhienBanHang::ghiNhan;
 };
 
-class PhienBanHang {
-  attribute Date ngayBan;
-  attribute Time gioBan;
-  attribute List&lt;DongBanHang&gt; gomCo;                                     // hợp thành
-  relationship HBH ghiNhan inverse HBH::banHang;                         // phía "nhiều"
-  boolean becomeComplete(); void makeLineItem(); void makePayment(); Number total();
-};
+class PhienBanHang (extent CacPhien) {
+  attribute string maPhien;
+  attribute List&lt;DongBanHang&gt; gomCo;
+  relationship HBH ghiNhan inverse HBH::banHang;
+  double total();
+};</code></pre>
+<p>Ví dụ tập trung vào cấu trúc lược đồ. <code>total()</code> khai báo chữ ký phương thức tính tổng tiền phiên. Với tiền trong hệ thống thật, chọn kiểu lưu chính xác theo đơn vị tiền tệ.</p>
+</details>
+<details><summary>OQL · Duyệt tham chiếu đơn và collection</summary><pre><code>SELECT STRUCT(ma: p.maPhien, tong: p.total())
+FROM p IN CacPhien
+WHERE p.ghiNhan.hangTruong = "Quầy 1";
 
-class DongBanHang { attribute integer soLuong; Number subtotal(); };
-
-class ThanhToan     (extent ThanhToan)    { attribute Number soTien; };
-class ThanhToanTM   extends ThanhToan (extent ThanhToanTM)   { ... };
-class ThanhToanThe  extends ThanhToan (extent ThanhToanThe)  { ... };</code></pre>
-<p>⚠️ ODL trong slide đặt <code>Set&lt;&gt;</code> nhầm phía. Quy tắc đúng: phía “1” giữ tập hợp, phía “nhiều” giữ một tham chiếu. Mỗi <code>inverse</code> trỏ tới relationship của lớp bên kia.</p></details>
-<details><summary>Ví dụ OQL</summary><pre><code>SELECT p.ngayBan, p.total()
-FROM   PhienBanHang p
-WHERE  p.ghiNhan.hangTruong = "Quầy 1";</code></pre><p>OQL đi theo đường dẫn tham chiếu (<code>p.ghiNhan.hangTruong</code>) thay cho JOIN, và gọi được phương thức trong truy vấn.</p></details>
+SELECT STRUCT(ma: p.maPhien, soLuong: d.soLuong)
+FROM p IN CacPhien, d IN p.gomCo
+WHERE p.ghiNhan.hangTruong = "Quầy 1" AND d.soLuong &gt;= 2;</code></pre>
+<p>Truy vấn đầu lấy thông tin theo phiên. Truy vấn sau lấy thông tin theo từng dòng bán hàng đạt điều kiện. Hai dòng cùng phiên có thể tạo hai kết quả.</p>
+</details>
+<details><summary>Tự luyện · Đổi chiều truy vấn</summary><p>Viết truy vấn lấy mã phiên có ít nhất một dòng số lượng từ 2 trở lên tại <code>Quầy 1</code>. Đối chiếu với truy vấn trên bằng <code>SELECT DISTINCT p.maPhien</code> nếu mã phiên là duy nhất.</p><p>Slide 24 gợi ý thêm bài thực nghiệm so sánh SELECT một bảng, SELECT nhiều bảng, INSERT, UPDATE và DELETE giữa mô hình quan hệ và hướng đối tượng. Nếu thực hành, giữ cùng dữ liệu và tải thao tác rồi ghi rõ điều kiện đo.</p></details>
 </div>
 <div class="panel">
 <h2>Các hướng thiết kế và ma trận Stonebraker</h2>
@@ -467,7 +473,7 @@ ORDER BY id;</code></pre><p>View tổng hợp trả một dòng mỗi xe. Xe 3 c
 </fieldset>
 </div>
 <div class="panel">
-<h2>Oracle · Kiến thức mở rộng giám khảo hay hỏi</h2>
+<h2>Oracle · Kiểu và tham chiếu đối tượng</h2>
 <div class="table-scroll" tabindex="0" role="region" aria-label="VARRAY và nested table"><table><thead><tr><th></th><th><code>VARRAY(n) OF t</code></th><th><code>TABLE OF t</code> (nested table)</th></tr></thead><tbody>
 <tr><td>Kích thước</td><td>Giới hạn tối đa n phần tử</td><td>Không giới hạn</td></tr>
 <tr><td>Thứ tự</td><td>Giữ thứ tự</td><td>Không bảo đảm thứ tự khi lưu</td></tr>
@@ -510,9 +516,12 @@ SELECT v.id, v.location.distance(location_t(0,0)) AS d FROM vehicle v;</code></p
 <div class="hero compact"><span class="kicker">Chương 3 · Kiến trúc hệ thống</span><h1>CSDL phân tán</h1><p>Chia dữ liệu để chịu tải, sao chép để tăng khả năng phục vụ và xác định hành vi khi mạng gặp sự cố.</p></div>
 <div class="panel">
 <h2>Phân mảnh, cấp phát và sao chép</h2>
+<p>Bài giảng <em>CSDL phân tán</em> đi theo ba lớp thiết kế: <strong>lược đồ toàn cục → lược đồ phân mảnh → lược đồ cấp phát</strong>. Khi thiết kế mới, dùng top-down để đi theo thứ tự đó. Khi tích hợp các CSDL đã có, dùng bottom-up để quy đổi các lược đồ cục bộ về mô hình chung rồi tích hợp. Tính trong suốt giúp người dùng truy vấn qua lược đồ toàn cục dù các mảnh nằm ở các site khác nhau.</p>
 <div class="table-scroll" tabindex="0" role="region" aria-label="Ba quyết định về dữ liệu phân tán"><table><thead><tr><th>Quyết định</th><th>Câu hỏi</th><th>Ví dụ</th></tr></thead><tbody>
 <tr><td>Phân mảnh ngang</td><td>Các hàng được chia ra sao?</td><td><code>Orders</code> chia theo <code>branchId</code>. Có thể ghép lại bằng hợp các mảnh khi mỗi đơn thuộc đúng một mảnh.</td></tr>
 <tr><td>Phân mảnh dọc</td><td>Các cột được chia ra sao?</td><td>Thông tin liên hệ tách khỏi hồ sơ kỹ thuật; cùng giữ khóa <code>vehicleId</code> để nối khôi phục.</td></tr>
+<tr><td>Phân mảnh ngang dẫn xuất</td><td>Quan hệ nào quyết định mảnh?</td><td><code>ORDER_DETAIL</code> đi theo mảnh của <code>ORDER</code> thông qua bán kết trên <code>MaDH</code>.</td></tr>
+<tr><td>Phân mảnh hỗn hợp</td><td>Chia cả hàng và cột ra sao?</td><td>Lọc khách theo thành phố rồi tách cột hồ sơ và liên hệ trong từng mảnh. Ghép dọc theo khóa trước khi hợp các mảnh thành phố.</td></tr>
 <tr><td>Cấp phát</td><td>Mỗi mảnh nằm ở đâu?</td><td>Mảnh TP.HCM đặt gần người dùng TP.HCM để đọc và ghi cục bộ thường xuyên.</td></tr>
 <tr><td>Sao chép</td><td>Có bao nhiêu bản của cùng mảnh?</td><td>Giữ thêm bản sao mảnh TP.HCM ở Đà Nẵng để phục vụ các mục tiêu chịu lỗi hoặc đọc.</td></tr>
 </tbody></table></div>
@@ -521,6 +530,31 @@ SELECT v.id, v.location.distance(location_t(0,0)) AS d FROM vehicle v;</code></p
 <div class="card"><h3>Sao chép đồng bộ</h3><p>Xác nhận ghi sau khi đạt điều kiện xác nhận từ các bản sao theo cấu hình. Điều này tăng chi phí phối hợp và phụ thuộc vào độ trễ mạng.</p></div>
 <div class="card"><h3>Sao chép bất đồng bộ</h3><p>Có thể xác nhận ở nút chính rồi chuyển thay đổi sau. Đọc từ bản sao có thể thấy dữ liệu cũ. Khi chuyển nút chưa bắt kịp thành nút chính, dữ liệu đã xác nhận có thể bị mất tùy cơ chế.</p></div>
 </div>
+</div>
+<div class="panel">
+<h2>Bài tập · Thiết kế dữ liệu cho ba chi nhánh</h2>
+<p>Hệ thống bán hàng có <code>CUSTOMER</code>, <code>ORDER</code>, <code>ORDER_DETAIL</code> và <code>PRODUCT</code> tại TP.HCM, Hà Nội và Đà Nẵng. Hãy phân mảnh theo thành phố, chỉ định site cho từng mảnh và giải thích cách lấy tên khách của đơn đặt tại TP.HCM.</p>
+<details><summary>Gợi ý · Phân mảnh, tái thiết và JOIN liên site</summary>
+<ul>
+<li>Với mỗi thành phố <em>i</em>, đặt <code>CUSTOMERᵢ = σ(ThanhPho = i)(CUSTOMER)</code> và tương tự cho <code>ORDERᵢ</code>. Hợp các mảnh để tái thiết từng bảng. Nếu có thành phố ngoài danh sách hoặc giá trị chưa biết, thêm mảnh còn lại hoặc ràng buộc rõ miền dữ liệu.</li>
+<li>Đặt mảnh ở site tương ứng. Đặt <code>ORDER_DETAILᵢ = ORDER_DETAIL ⋉ ORDERᵢ</code> theo <code>MaDH</code>. Chỉ tách dọc nếu có nhóm cột với nhu cầu truy cập khác nhau. Giữ khóa trong mỗi mảnh dọc để nối lại.</li>
+<li>Lọc đơn ở mảnh TP.HCM trước. Nếu thành phố khách có thể khác thành phố đặt đơn, dùng các <code>MaKH</code> còn thiếu để tra mảnh khác và chỉ trả về cột cần thiết. JOIN hoàn toàn cục bộ khi có bảo đảm đồng vị trí hoặc bản sao khách phù hợp.</li>
+<li>Sao chép <code>PRODUCT</code> đến cả ba site nếu danh mục thường được đọc và ít đổi. So với lưu tập trung, phương án này giảm đọc từ xa nhưng cần đồng bộ khi đổi danh mục, giá và làm báo cáo liên chi nhánh.</li>
+</ul>
+</details>
+<h2>Bài tập · Đẩy bộ lọc xuống trước JOIN</h2>
+<p><code>STUDENT</code> được phân theo cơ sở. <code>ENROLLMENT</code> đặt cùng site với sinh viên và <code>COURSE</code> có bản sao ở cả ba site. Hãy tìm tên sinh viên, tên môn và điểm từ 8 trở lên của sinh viên TP.HCM.</p>
+<details><summary>Gợi ý · Cây truy vấn và dữ liệu qua mạng</summary>
+<pre><code>π HoTen, TenMH, Diem
+└─ ⋈ MaMH
+   ├─ ⋈ MSSV
+   │  ├─ π MSSV, HoTen (STUDENT_TPHCM)
+   │  └─ π MSSV, MaMH, Diem (σ Diem ≥ 8 (ENROLLMENT_TPHCM))
+   └─ π MaMH, TenMH (COURSE tại TP.HCM)</code></pre>
+<p>Xử lý cả hai JOIN tại site TP.HCM. Với yêu cầu chạy tại đây và dùng được bản sao <code>COURSE</code> cục bộ, <strong>0 byte dữ liệu cần truyền giữa các site để thực hiện truy vấn</strong>. Nếu yêu cầu đến từ site khác, chỉ cần trả kết quả thay vì gửi cả bảng. Giữ khóa JOIN khi chiếu cột.</p>
+<p><strong>Cách tính.</strong> Với 200 byte mỗi dòng truyền, gửi <em>n</em> dòng tốn <em>200n</em> byte dữ liệu. Chuyển toàn bộ 100.000 dòng sinh viên và 1.000.000 dòng ghi danh sẽ tốn 220 MB nếu tất cả đều phải qua mạng, chưa tính <code>COURSE</code> và chi phí giao thức. Con số 5% sinh viên TP.HCM trong bài chưa cho biết bao nhiêu <em>dòng ghi danh</em> đạt điểm. Muốn tính lượng trả về cần thêm số dòng kết quả hoặc giả định về số môn đạt của mỗi sinh viên.</p>
+</details>
+<details><summary>Tự luyện thêm · Quản lý theo khoa hoặc địa bàn</summary><p>Slide 32–33 dùng hai bài thiết kế: quản lý sinh viên ở phòng đào tạo và các khoa, quản lý dân cư ở cấp phường, quận và thành phố. Với mỗi bài, ghi quan hệ gốc, tiêu chí phân mảnh, mảnh dẫn xuất, vị trí lưu và cách tái thiết để báo cáo toàn cục.</p></details>
 </div>
 <div class="panel">
 <h2>CAP · Điều gì xảy ra khi mạng bị chia cắt?</h2>
@@ -545,8 +579,84 @@ SELECT v.id, v.location.distance(location_t(0,0)) AS d FROM vehicle v;</code></p
 
 
 
+<section class="chapter" id="khong-gian" data-title="CSDL không gian · GIS và PostGIS">
+<div class="hero compact"><span class="kicker">Chương 4 · Dữ liệu không gian</span><h1>CSDL không gian</h1><p>Biểu diễn hình học, xác định quan hệ giữa các đối tượng và tính khoảng cách đúng đơn vị.</p></div>
+<div class="panel">
+<h2>Chọn kiểu dữ liệu, hệ tọa độ và hàm</h2>
+<p>Cây, trường học và bệnh viện là <code>POINT</code>. Tuyến đường là <code>LINESTRING</code>. Ranh giới quận là <code>POLYGON</code> trong bài tập. Với <code>geometry</code>, chọn cùng hệ tọa độ cho các đối tượng và một hệ chiếu có đơn vị mét nếu cần tính khoảng cách theo mét. <code>geometry</code> dùng EPSG:4326 có tọa độ theo độ. Nếu lưu dữ liệu kinh độ và vĩ độ, có thể dùng <code>geography</code> cho phép đo bằng mét.</p>
+<p>SRID xác định hệ tọa độ. <code>ST_SetSRID</code> gắn nhãn hệ tọa độ hiện có. <code>ST_Transform</code> chuyển đổi giá trị tọa độ sang hệ khác.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Chọn hàm PostGIS"><table><thead><tr><th>Câu hỏi</th><th>Hàm</th><th>Điểm cần kiểm tra</th></tr></thead><tbody>
+<tr><td>Hai đối tượng cách nhau bao xa?</td><td><code>ST_Distance(a, b)</code></td><td>Trả về số đo. Dùng để xếp hạng theo khoảng cách.</td></tr>
+<tr><td>Đối tượng có cách vị trí tối đa 500 m?</td><td><code>ST_DWithin(a, b, 500)</code></td><td>Dùng kiểu hoặc hệ tọa độ có đơn vị phù hợp. Hàm có thể tận dụng chỉ mục không gian.</td></tr>
+<tr><td>Trường học thuộc quận nào?</td><td><code>ST_Contains(quan, truong)</code></td><td>Điểm trên biên không thỏa <code>ST_Contains</code>. Dùng <code>ST_Covers</code> nếu tính cả biên và đặt quy tắc xử lý khi hai quận cùng khớp.</td></tr>
+<tr><td>Đường và vùng có điểm chung?</td><td><code>ST_Intersects(a, b)</code></td><td>Có tính cả chạm biên. <code>ST_Touches</code> giúp nhận diện trường hợp chạm mà phần trong không giao nhau.</td></tr>
+</tbody></table></div>
+<p>Slide <em>Topology trong GIS</em> phân biệt phần trong, đường biên và bao đóng. Ma trận 3×3 trong slide xét các phép giao giữa phần trong, biên và bao đóng, theo ký hiệu ghi dưới hình. Trong PostGIS, <code>ST_Relate</code> dùng DE-9IM với phần trong, biên và phần ngoài để biểu diễn quan hệ theo kích thước của các giao. Với điểm trên đoạn thẳng, điểm ở đầu mút và điểm nằm giữa đoạn cho quan hệ topology khác nhau. Slide dùng cú pháp phương thức SQL Server như <code>a.STWithin(b)</code>. Ví dụ thực hành bên dưới dùng PostGIS <code>ST_Within(a, b)</code>.</p>
+</div>
+<div class="panel">
+<h2>Bài tập · Cây xanh và tuyến đường gần nhất</h2>
+<p>Cho <code>tree(treeid, species, height, healthstatus, location)</code> và <code>road(roadid, roadname, location)</code>. Hãy tìm 10 cây gần một đường nhất, tìm cây yếu cao hơn 10 m trong bán kính 1 km, rồi tìm đường gần nhất cho từng cây.</p>
+<details><summary>Gợi ý · Truy vấn khoảng cách, bán kính và chỉ mục</summary>
+<p>Giả sử các cột <code>location</code> và điểm <code>:p</code> là <code>geometry</code> cùng SRID theo mét. <code>:p</code> và <code>:road_id</code> là tham số minh họa.</p>
+<pre><code>SELECT t.treeid, ST_Distance(t.location, r.location) AS distance_m
+FROM tree AS t CROSS JOIN road AS r
+WHERE r.roadid = :road_id
+ORDER BY distance_m, t.treeid
+LIMIT 10;
+
+SELECT t.treeid
+FROM tree AS t
+WHERE t.height &gt; 10
+  AND t.healthstatus = 'Yếu'
+  AND ST_DWithin(t.location, :p, 1000);
+
+SELECT t.treeid, r.roadid
+FROM tree AS t
+LEFT JOIN LATERAL (
+  SELECT roadid
+  FROM road
+  ORDER BY location &lt;-&gt; t.location
+  LIMIT 1
+) AS r ON true;
+
+CREATE INDEX tree_location_gix ON tree USING gist (location);
+CREATE INDEX road_location_gix ON road USING gist (location);</code></pre>
+<p>Đổi bán kính thành 500 và bỏ hai điều kiện thuộc tính để làm câu tìm tất cả cây gần một điểm. So sánh <code>EXPLAIN (ANALYZE, BUFFERS)</code> trước và sau khi thêm chỉ mục với cùng dữ liệu và điều kiện. Với bảng nhỏ, planner có thể vẫn chọn quét tuần tự.</p>
+</details>
+</div>
+<div class="panel">
+<h2>Bài tập · Trường học, dân cư và vùng phục vụ bệnh viện</h2>
+<p>Cho <code>school</code>, <code>hospital</code> và <code>resident</code> dạng điểm, <code>district</code> dạng vùng. Lập truy vấn đếm trường và tính dân số theo quận, tìm điểm dân cư cách bệnh viện gần nhất hơn 3 km, tính tỷ lệ dân số trong 1 km và đề xuất vị trí bệnh viện mới.</p>
+<details><summary>Gợi ý · Từ ghép vùng đến tính tỷ lệ phục vụ</summary>
+<ul>
+<li><strong>Đếm trường hoặc dân số theo quận:</strong> ghép bằng <code>ST_Contains</code> hoặc <code>ST_Covers</code> theo quy ước biên. Dùng <code>LEFT JOIN</code> để giữ cả quận không có trường và đếm theo mã trường. Tính dân số trong truy vấn riêng để tránh nhân dòng khi ghép cả trường lẫn dân cư.</li>
+<li><strong>Lân cận:</strong> dùng <code>ST_DWithin</code> với 2.000 m để tìm trường gần bệnh viện. Với yêu cầu xa hơn 3 km, dùng <code>NOT EXISTS</code> bệnh viện trong khoảng cách 3.000 m. Nếu không có dữ liệu bệnh viện, cần báo trạng thái thiếu dữ liệu trước khi diễn giải kết quả.</li>
+<li><strong>Vùng phục vụ:</strong> cộng dân số mỗi điểm đúng một lần nếu có ít nhất một bệnh viện trong 1.000 m. Chia cho tổng dân số, xử lý trường hợp mẫu số bằng 0. Để vẽ vùng, dùng <code>ST_Buffer</code> quanh bệnh viện rồi hợp các vùng chồng nhau.</li>
+<li><strong>Vị trí mới:</strong> lọc ứng viên theo khoảng cách tối thiểu 2 km đến bệnh viện hiện tại. Xếp hạng theo dân số được phục vụ thêm trong bán kính đã chọn. Ghi rõ bán kính và quy tắc xếp hạng.</li>
+</ul>
+</details>
+<details><summary>Mẫu SQL · Tỷ lệ dân số trong vùng phục vụ 1 km</summary>
+<p>Giả sử mọi điểm dùng cùng hệ tọa độ mét và <code>population</code> là số dân tại mỗi điểm.</p>
+<pre><code>SELECT 100.0 * COALESCE(SUM(r.population) FILTER (
+  WHERE EXISTS (
+    SELECT 1
+    FROM hospital AS h
+    WHERE ST_DWithin(h.location, r.location, 1000)
+  )
+), 0) / NULLIF(SUM(r.population), 0) AS pct
+FROM resident AS r;</code></pre>
+<p><code>EXISTS</code> chỉ kiểm tra có bệnh viện phù hợp, nên một điểm trong hai vùng phục vụ vẫn được đếm một lần. <code>COALESCE</code> trả về tử số 0 khi không có điểm nào được phục vụ. <code>NULLIF</code> tránh chia cho 0.</p></details>
+<details><summary>Tự luyện · Chồng lớp và chọn vị trí trong GIS</summary>
+<p>Slide 18 dùng lưới độ cao. Để tính thể tích san lấp đến cốt 120 m với ô 10 × 10 m, lấy phần cao hơn 120 m nhân 100 m² để tính đất đào và phần thấp hơn 120 m nhân 100 m² để tính đất đắp. Lấy tổng đào trừ tổng đắp để tính lượng đất còn thừa, giả sử cao độ đại diện cho cả ô và bỏ qua độ nở đất.</p>
+<p>Slide 19 cho hai lớp độ dốc và sử dụng đất. Giao hai lớp để lập các vùng đồng nhất, giữ thuộc tính của cả hai rồi tính điểm <code>0,30 × độ dốc + 0,70 × sử dụng đất</code> trên các điểm thích hợp đã quy đổi. Nếu điểm có hơn một chữ số thập phân, ghi rõ cách làm tròn trước khi áp các nhóm có ranh 5/5,1 và 8/8,1.</p>
+<p>Với bài chọn vị trí ở slide 20, xác định lớp dữ liệu cho từng tiêu chí, tạo vùng đệm, giao vùng thỏa điều kiện, loại vùng cấm rồi lọc theo diện tích tối thiểu. Công bố hệ tọa độ, tiêu chí loại và tiêu chí ưu tiên để người đọc kiểm tra được kết quả.</p>
+</details>
+</div>
+</section>
+
+
 <section class="chapter" id="di-dong" data-title="CSDL di động">
-<div class="hero compact"><span class="kicker">Chương 4 · Dữ liệu khi mất mạng</span><h1>CSDL di động</h1><p>Giữ ứng dụng hữu ích khi thiết bị mất mạng và đưa cập nhật về máy chủ an toàn khi kết nối trở lại.</p></div>
+<div class="hero compact"><span class="kicker">Chương 5 · Dữ liệu khi mất mạng</span><h1>CSDL di động</h1><p>Giữ ứng dụng hữu ích khi thiết bị mất mạng và đưa cập nhật về máy chủ an toàn khi kết nối trở lại.</p></div>
 <div class="panel">
 <h2>Tại sao cần CSDL di động? Định nghĩa</h2>
 <p>Hơn 1 tỷ điện thoại thông minh vào năm 2012 và con số vẫn tăng nhanh. Doanh nghiệp chuyển sang mô hình nhân viên di động. Thiết bị rẻ và mạnh mở đường cho các ứng dụng hướng dữ liệu, cần truy cập <strong>bất cứ nơi nào, bất cứ lúc nào</strong>. Ví dụ: nhân viên bán hàng cập nhật hồ sơ khi di chuyển, phóng viên, bác sĩ xem bệnh án, điều khiển giao thông, cứu hỏa và cấp cứu, chia sẻ thông tin trong cộng đồng.</p>
@@ -570,7 +680,7 @@ SELECT v.id, v.location.distance(location_t(0,0)) AS d FROM vehicle v;</code></p
 <div class="card"><h3>Mục tiêu và ràng buộc</h3><p><strong>Mục tiêu:</strong> bất cứ nơi nào (di chuyển không ảnh hưởng dữ liệu), bất cứ lúc nào (lưu và truy xuất khi có kết nối), hiệu quả (đưa đúng thứ người dùng cần).</p><p><strong>Ràng buộc:</strong> màn hình nhỏ, nhập liệu và truy vấn hạn chế, khả năng tính toán và lưu trữ hạn chế, <strong>an ninh yếu</strong>.</p></div>
 </div>
 <p><strong>Cách tiếp cận bằng tập tin phẳng</strong> (nhiều nhà phát triển đang dùng): các bản ghi không có quan hệ cấu trúc với nhau. ✅ Nhỏ, dễ quản lý. ❌ Ứng dụng phải tự biết cách tổ chức bản ghi, và lập trình viên phải tự làm các chức năng của CSDL.</p>
-<h3>7 yêu cầu của DBMS di động (rất có thể ra thi)</h3>
+<h3>7 yêu cầu của DBMS di động</h3>
 <ol>
 <li><strong>Bộ nhớ nhỏ</strong> (small footprint)</li>
 <li><strong>Tối ưu hệ thống lưu trữ</strong>: kích thước nhỏ, chống sốc tốt, tiêu thụ ít điện, truy cập nhanh (flash)</li>
@@ -668,7 +778,7 @@ SELECT v.id, v.location.distance(location_t(0,0)) AS d FROM vehicle v;</code></p
 </section>
 
 <section class="chapter" id="blockchain" data-title="Blockchain">
-<div class="hero compact"><span class="kicker">Chương 5 · Chia sẻ sổ cái</span><h1>Blockchain dưới góc nhìn CSDL</h1><p>Hiểu cấu trúc khối, vai trò của đồng thuận và điều kiện để một sổ cái dùng chung có ích.</p></div>
+<div class="hero compact"><span class="kicker">Chương 6 · Chia sẻ sổ cái</span><h1>Blockchain dưới góc nhìn CSDL</h1><p>Hiểu cấu trúc khối, vai trò của đồng thuận và điều kiện để một sổ cái dùng chung có ích.</p></div>
 <div class="panel">
 <h2>Mỗi cơ chế giải quyết một câu hỏi</h2>
 <div class="table-scroll" tabindex="0" role="region" aria-label="Cơ chế trong blockchain"><table><thead><tr><th>Cơ chế</th><th>Giải quyết gì?</th><th>Giới hạn</th></tr></thead><tbody>
@@ -695,7 +805,7 @@ SELECT v.id, v.location.distance(location_t(0,0)) AS d FROM vehicle v;</code></p
 </section>
 
 <section class="chapter" id="newsql" data-title="NewSQL">
-<div class="hero compact"><span class="kicker">Chương 6 · Giao dịch trên nhiều nút</span><h1>NewSQL</h1><p>Giữ mô hình quan hệ và giao dịch ACID, đồng thời mở rộng xử lý giao dịch trên nhiều máy.</p></div>
+<div class="hero compact"><span class="kicker">Chương 7 · Giao dịch trên nhiều nút</span><h1>NewSQL</h1><p>Giữ mô hình quan hệ và giao dịch ACID, đồng thời mở rộng xử lý giao dịch trên nhiều máy.</p></div>
 <div class="panel">
 <h2>NewSQL giải bài toán nào?</h2>
 <p>Giả sử hệ thống đặt chỗ cần SQL, các ràng buộc nghiệp vụ và giao dịch, nhưng lưu lượng ghi đã vượt khả năng của một máy. NewSQL là tên thường dùng trong tài liệu cho một nhóm hệ quản trị nhắm đến mở rộng workload <strong>OLTP</strong> theo chiều ngang trong khi duy trì mô hình quan hệ và giao dịch ACID. OLTP gồm nhiều giao dịch nhỏ như đặt chỗ, thanh toán hoặc đổi trạng thái đơn.</p>
@@ -720,7 +830,7 @@ SELECT v.id, v.location.distance(location_t(0,0)) AS d FROM vehicle v;</code></p
 
 
 <section class="chapter" id="on-tap" data-title="Ôn tích hợp · Đề mô phỏng">
-<div class="hero compact"><span class="kicker">Chương 7 · Vận dụng</span><h1>Ôn tích hợp</h1><p>Tự làm một đề 90 phút với tình huống mới. Phân bổ dưới đây dành cho luyện tập.</p></div>
+<div class="hero compact"><span class="kicker">Chương 8 · Vận dụng</span><h1>Ôn tích hợp</h1><p>Tự làm một đề 90 phút với tình huống mới. Phân bổ dưới đây dành cho luyện tập.</p></div>
 <div class="panel">
 <h2>Cách viết câu trả lời thiết kế</h2>
 <ol>
@@ -731,21 +841,21 @@ SELECT v.id, v.location.distance(location_t(0,0)) AS d FROM vehicle v;</code></p
 </ol>
 </div>
 <div class="panel">
-<h2>Đề mô phỏng · Hệ thống mượn thiết bị</h2>
-<p>Một trường cho mượn thiết bị tại ba cơ sở. Mỗi phiếu lưu nhiều thiết bị, số lượng và giá thay thế tại lúc bàn giao. Sinh viên thuộc câu lạc bộ. Câu lạc bộ có thể dùng chung thiết bị. Ứng dụng kiểm kê cần dùng offline, còn một số thiết bị được luân chuyển qua đơn vị đối tác.</p>
+<h2>Đề mô phỏng · Quản lý cây xanh tại ba địa bàn</h2>
+<p>Mỗi đội quản lý phụ trách nhiều cây và lập nhiều biên bản kiểm tra. Một biên bản có nhiều dòng ghi nhận tình trạng. Ba địa bàn lưu dữ liệu theo khu vực. Cây và tuyến đường có tọa độ. Chia 90 phút để tự tập theo thời lượng kỳ thi. Các câu dưới đây do người soạn đề cương đặt.</p>
 <ol>
-<li><strong>25 phút · NoSQL.</strong> Thiết kế một phiếu document. Trình bày pipeline tính tổng số lượng theo loại thiết bị và theo tháng. Vẽ một mẫu graph để tìm câu lạc bộ từng mượn cùng loại thiết bị với câu lạc bộ đang xét.</li>
-<li><strong>15 phút · Quan hệ–đối tượng.</strong> Mô tả kiểu tọa độ cho kho và collection các lần kiểm định. Viết truy vấn hoặc SQL giả lấy tổng chi phí kiểm định theo kho, kể cả kho chưa kiểm định.</li>
-<li><strong>25 phút · Phân tán và di động.</strong> Chia phiếu giữa ba cơ sở. Giải thích cách xử lý khi hai phía cùng yêu cầu thiết bị cuối trong lúc mạng bị chia cắt. Mô tả cách ứng dụng đồng bộ hai lần thử gửi của cùng một phiếu kiểm kê.</li>
-<li><strong>15 phút · Blockchain và NewSQL.</strong> Trình bày khi nào đối tác cần sổ cái chung. Giải thích khi nào hệ SQL phân tán đáng cân nhắc cho việc tạo phiếu và giữ thiết bị.</li>
-<li><strong>10 phút · Rà bài.</strong> Kiểm tra định danh, chiều quan hệ, đơn vị tính tổng, kết quả khi không có dữ liệu và giả định khi mất mạng.</li>
+<li><strong>20 phút · Hướng đối tượng.</strong> Vẽ UML cho đội, biên bản và dòng ghi nhận. Chuyển sang ODL, rồi viết OQL liệt kê biên bản của một đội có dòng ghi nhận mức độ nguy hiểm cao.</li>
+<li><strong>20 phút · Phân tán.</strong> Phân mảnh <code>TREE</code> theo địa bàn và phân mảnh dẫn xuất <code>INSPECTION</code> theo cây. Vẽ cây truy vấn tìm cây yếu có kiểm tra trong tháng ở một địa bàn. Xác định lượng phải truyền nếu site khác nhận 2.000 dòng, mỗi dòng 200 byte.</li>
+<li><strong>25 phút · Không gian.</strong> Viết truy vấn PostGIS tìm cây yếu trong bán kính 500 m từ một điểm. Tính số cây theo quận và giải thích cách xử lý cây đúng trên biên hai quận.</li>
+<li><strong>15 phút · NoSQL và di động.</strong> Mô hình hóa một biên bản MongoDB với các dòng ghi nhận nhúng, phác thảo pipeline đếm dòng theo mức độ. Giải thích cách tránh ghi trùng khi thiết bị gửi lại biên bản sau mất mạng.</li>
+<li><strong>10 phút · Rà bài.</strong> Kiểm tra chiều liên kết, khóa tái thiết, phạm vi JOIN, đơn vị đo và những trường hợp nằm trên biên.</li>
 </ol>
-<details><summary>Mở gợi ý chấm sau khi làm</summary>
+<details><summary>Mở gợi ý sau khi làm</summary>
 <ul>
-<li><strong>NoSQL:</strong> một phiếu chứa các dòng thiết bị nhúng, mã thiết bị có thể tham chiếu hồ sơ hiện hành. Tách dòng rồi nhóm theo cặp tháng–loại. Cộng số lượng từng dòng. Với graph, đi từ câu lạc bộ qua phiếu tới loại thiết bị, rồi duyệt quan hệ ngược tới câu lạc bộ khác và khử trùng.</li>
-<li><strong>Quan hệ–đối tượng:</strong> có kiểu tọa độ và kiểu từng lần kiểm định, sau đó tạo nested table. Giữ một dòng mỗi kho bằng truy vấn tổng hợp tương quan hoặc kỹ thuật nối ngoài phù hợp. Tổng của kho chưa kiểm định là 0 nếu nghiệp vụ quy ước như vậy.</li>
-<li><strong>Phân tán và di động:</strong> phân mảnh ngang theo cơ sở, nêu vị trí và số bản sao. Với thiết bị duy nhất, nêu quy tắc cấp quyền xác nhận để tránh trùng, hoặc phân quyền giữ chỗ trước khi mất mạng. Máy chủ dùng mã thao tác để nhận biết gửi lại. Phiên bản gốc phát hiện cập nhật xung đột.</li>
-<li><strong>Blockchain và NewSQL:</strong> phân tích ai được ghi và ai cần tự xác minh lịch sử. Với NewSQL, chỉ ra nhu cầu mở rộng giao dịch giữ thiết bị và tạo phiếu, cùng chi phí giao dịch qua các mảnh.</li>
+<li>Dùng quan hệ hai chiều đội–biên bản, collection dòng và một extent biên bản. OQL duyệt collection và dùng <code>DISTINCT</code> nếu trả về mã biên bản duy nhất.</li>
+<li>Lọc mảnh theo địa bàn rồi lọc trạng thái cây và thời gian kiểm tra trước JOIN theo mã cây. Gửi kết quả tốn 400.000 byte dữ liệu trong giả định của bài.</li>
+<li>Dùng <code>ST_DWithin</code> với hệ tọa độ mét hoặc <code>geography</code>. Nếu dùng <code>ST_Covers</code> để tính điểm trên biên, cần quy tắc gán một quận trước khi đếm.</li>
+<li>Dùng <code>$unwind</code> để tách dòng rồi <code>$group</code> để đếm. Giữ một mã biên bản hoặc mã thao tác duy nhất để máy chủ nhận biết gửi lại.</li>
 </ul>
 </details>
 </div>
@@ -755,11 +865,14 @@ SELECT v.id, v.location.distance(location_t(0,0)) AS d FROM vehicle v;</code></p
 <li><label><input type="checkbox"> Ưu điểm và hạn chế của CSDL quan hệ; 2 hướng giải quyết (mở rộng → ORDB, bỏ dạng chuẩn 1 → OODB); 2 trường phái nguồn gốc</label></li>
 <li><label><input type="checkbox"> Định nghĩa: đối tượng, tính chất, lớp, phương thức, bao gói, khái quát hóa, kế thừa, kế thừa bội, ISA và EXTENDS</label></li>
 <li><label><input type="checkbox"> Khác nhau giữa Tuple / Set / Bag / List / Table</label></li>
-<li><label><input type="checkbox"> ODMG, ODL, OQL; <strong>chuyển UML sang ODL</strong> (struct, relationship + inverse, List&lt;&gt; cho hợp thành, extends + extent)</label></li>
+<li><label><input type="checkbox"> ODMG, ODL, OQL; <strong>chuyển UML sang ODL</strong> (struct, relationship + inverse, collection theo bội số và thứ tự, extends, extent để truy vấn)</label></li>
 <li><label><input type="checkbox"> Bảng so sánh OODBMS–RDBMS, ma trận Stonebraker, lĩnh vực ứng dụng OODB</label></li>
 <li><label><input type="checkbox"> Oracle: CREATE TYPE, nested table và VARRAY, bí danh khi dùng dấu chấm, TABLE(), REF/DEREF, UNDER</label></li>
+<li><label><input type="checkbox"> Phân tán: phân mảnh ngang nguyên thủy và dẫn xuất, dọc, hỗn hợp, tái thiết bằng UNION hoặc JOIN, cấp phát và sao chép</label></li>
+<li><label><input type="checkbox"> Phân tán: vẽ cây truy vấn, chọn site, đẩy lọc và chiếu, tính số dòng thực sự qua mạng</label></li>
+<li><label><input type="checkbox"> Không gian: POINT, LINESTRING, POLYGON, SRID, mét và độ, topology và trường hợp chạm biên</label></li>
+<li><label><input type="checkbox"> Không gian: viết truy vấn bán kính và gần nhất, ghép điểm với vùng, tính vùng phục vụ và đọc kế hoạch sử dụng GiST</label></li>
 <li><label><input type="checkbox"> CSDL di động: định nghĩa, 4 đặc điểm, client–server và P2P, đặc điểm môi trường, <strong>7 yêu cầu</strong></label></li>
-<li><label><input type="checkbox"> Sản phẩm di động (kèm kích thước bộ nhớ), CSDL nhúng PicoDBMS 30 KB, TinyDB 3 KB</label></li>
 <li><label><input type="checkbox"> Vấn đề của MDB: truy vấn phụ thuộc và không phụ thuộc vị trí, đồng thời, giao tác và khôi phục</label></li>
 <li><label><input type="checkbox"> NoSQL: 4 họ, CAP, ACID và BASE, sharding và replication</label></li>
 <li><label><input type="checkbox"> MongoDB: nhúng và tham chiếu, aggregation ($unwind, $group, $addToSet, $all)</label></li>
@@ -769,9 +882,11 @@ SELECT v.id, v.location.distance(location_t(0,0)) AS d FROM vehicle v;</code></p
 <div class="panel" id="tai-lieu">
 <h2>Tài liệu tham khảo</h2>
 <ul>
-<li>Tài liệu của thầy trên courses.uit.edu.vn: slide <em>Bài giảng CSDL số 1 – HĐT</em>, slide <em>Bài giảng CSDL số 5 – Mobile DB (cập nhật)</em>, bài tập CSDL quan hệ đối tượng (Oracle), bài tập CSDL NoSQL (MongoDB, Neo4j).</li>
+<li>Tài liệu mới dùng để cập nhật: <em>Bài giảng CSDLNC số 3 – HĐT</em> (slide 17–20, 24), <em>Bài giảng CSDL – Distributed</em> (slide 13–33), <em>Topology trong GIS</em> (slide 2–8, 12–20), <em>Bài tập CSDL phân tán</em> và <em>Bài tập CSDL không gian</em>.</li>
+<li>Tài liệu môn học đã đối chiếu trước đó trên courses.uit.edu.vn: slide <em>Bài giảng CSDL số 1 – HĐT</em>, slide <em>Bài giảng CSDL số 5 – Mobile DB (cập nhật)</em>, bài tập CSDL quan hệ đối tượng (Oracle), bài tập CSDL NoSQL (MongoDB, Neo4j).</li>
 <li><a href="https://sdh.uit.edu.vn/sites/default/files/uploads/files/202504/qd_1010_qd_dhcntt_28_11_2022_ctdt_nganh_cntt_2022.pdf">UIT · Chương trình thạc sĩ CNTT</a>, mục 9.15, trang in 22.</li>
-<li><a href="https://vnuhcmpress.edu.vn/tai-lieu-tham-khao-co-so-du-lieu-nang-cao-b40107.html">NXB ĐHQG-HCM · Cơ sở dữ liệu nâng cao</a>, sách tham khảo về NoSQL, NewSQL và Blockchain. Bài thực hành được tổng hợp từ hai bài Moodle bạn cung cấp.</li>
+<li><a href="https://vnuhcmpress.edu.vn/tai-lieu-tham-khao-co-so-du-lieu-nang-cao-b40107.html">NXB ĐHQG-HCM · Cơ sở dữ liệu nâng cao</a>, sách tham khảo về NoSQL, NewSQL và Blockchain.</li>
+<li><a href="https://postgis.net/docs/reference.html">PostGIS · Hàm không gian</a> và <a href="https://postgis.net/docs/using_postgis_query.html">truy vấn, chỉ mục không gian</a>.</li>
 <li><a href="https://www.mongodb.com/docs/manual/data-modeling/best-practices/">MongoDB · Thiết kế dữ liệu</a> và <a href="https://www.mongodb.com/docs/manual/reference/operator/aggregation/datetrunc/">gom nhóm theo mốc thời gian</a>.</li>
 <li><a href="https://neo4j.com/docs/cypher-manual/current/patterns/shortest-paths/">Neo4j · Cypher và đường đi ngắn nhất</a>.</li>
 <li><a href="https://docs.oracle.com/en/database/oracle/oracle-database/19/adobj/operations-on-collection-data-types.html">Oracle · Truy vấn collection</a>.</li>
